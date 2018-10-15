@@ -11,15 +11,15 @@ import com.vk.sdk.api.VKError
 import dagger.android.AndroidInjection
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.consts.ApiConstants
-import vkstatistic.apoyark.com.vkstatistics.ui.login.interactor.LoginMVPInteractor
-import vkstatistic.apoyark.com.vkstatistics.ui.login.presenter.LoginMVPPresenter
+import vkstatistic.apoyark.com.vkstatistics.ui.login.interactor.MainMVPInteractor
+import vkstatistic.apoyark.com.vkstatistics.ui.login.presenter.MainMVPPresenter
 import vkstatistic.apoyark.com.vkstatistics.utils.CurrentUser
 import javax.inject.Inject
 
-class LoginActivity : AppCompatActivity(), LoginMVPView {
+class MainActivity : AppCompatActivity(), MainMVPView {
 
     @Inject
-    internal lateinit var presenter: LoginMVPPresenter<LoginMVPView, LoginMVPInteractor>
+    internal lateinit var presenter: MainMVPPresenter<MainMVPView, MainMVPInteractor>
 
     override fun startSignIn() {
         VKSdk.login(this, ApiConstants.DEFAULT_LOGIN_SCOPE.toString())
@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity(), LoginMVPView {
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_main)
 
         presenter.onAttach(this)
         presenter.checkAuth()
@@ -41,12 +41,11 @@ class LoginActivity : AppCompatActivity(), LoginMVPView {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (!// Пользователь успешно авторизовался
-                // Произошла ошибка авторизации (например, пользователь запретил авторизацию)
-                VKSdk.onActivityResult(requestCode, resultCode, data, object : VKCallback<VKAccessToken> {
+        if (VKSdk.onActivityResult(requestCode, resultCode, data, object : VKCallback<VKAccessToken> {
                     override fun onResult(res: VKAccessToken) {
                         presenter.checkAuth()
                     }
+
                     override fun onError(error: VKError) {}
                 })) {
             super.onActivityResult(requestCode, resultCode, data)
@@ -60,6 +59,7 @@ class LoginActivity : AppCompatActivity(), LoginMVPView {
 
     override fun showProgress() {
         //not used
+        //if it gonna be used - move it to BaseActivity
     }
 
     override fun hideProgress() {
