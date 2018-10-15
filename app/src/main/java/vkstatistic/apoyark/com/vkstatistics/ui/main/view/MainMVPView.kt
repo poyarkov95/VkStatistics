@@ -1,4 +1,4 @@
-package vkstatistic.apoyark.com.vkstatistics.ui.login.view
+package vkstatistic.apoyark.com.vkstatistics.ui.main.view
 
 import vkstatistic.apoyark.com.vkstatistics.ui.base.view.MVPView
 

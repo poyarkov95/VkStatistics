@@ -9,7 +9,7 @@ import vkstatistic.apoyark.com.vkstatistics.ui.main.presenter.MainPresenter
 import vkstatistic.apoyark.com.vkstatistics.ui.main.view.MainMVPView
 
 @Module
-class LoginActivityModule {
+class MainActivityModule {
     @Provides
     internal fun provideLoginInteractor(interactor: MainInteractor): MainMVPInteractor = interactor
 

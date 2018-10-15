@@ -12,7 +12,7 @@ import vkstatistic.apoyark.com.vkstatistics.ui.search.view.SearchResultFragment
 import vkstatistic.apoyark.com.vkstatistics.ui.search.view.SearchResultMVPView
 
 @Module
-class SearchFragmentModule {
+class SearchResultFragmentModule {
 
     @Provides
     internal fun provideSearchResultInteractor(interactor: SearchResultInteractor): SearchResultMVPInteractor = interactor

@@ -1,9 +1,9 @@
-package vkstatistic.apoyark.com.vkstatistics.ui.login.presenter
+package vkstatistic.apoyark.com.vkstatistics.ui.main.presenter
 
 import io.reactivex.disposables.CompositeDisposable
 import vkstatistic.apoyark.com.vkstatistics.ui.base.presenter.BasePresenter
-import vkstatistic.apoyark.com.vkstatistics.ui.login.interactor.MainMVPInteractor
-import vkstatistic.apoyark.com.vkstatistics.ui.login.view.MainMVPView
+import vkstatistic.apoyark.com.vkstatistics.ui.main.interactor.MainMVPInteractor
+import vkstatistic.apoyark.com.vkstatistics.ui.main.view.MainMVPView
 import vkstatistic.apoyark.com.vkstatistics.utils.CurrentUser
 import vkstatistic.apoyark.com.vkstatistics.utils.SchedulerProvider
 import javax.inject.Inject

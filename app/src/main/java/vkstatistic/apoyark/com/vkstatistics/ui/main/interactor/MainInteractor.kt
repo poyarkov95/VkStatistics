@@ -1,4 +1,4 @@
-package vkstatistic.apoyark.com.vkstatistics.ui.login.interactor
+package vkstatistic.apoyark.com.vkstatistics.ui.main.interactor
 
 import javax.inject.Inject
 

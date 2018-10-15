@@ -1,4 +1,4 @@
-package vkstatistic.apoyark.com.vkstatistics.utils
+package vkstatistic.apoyark.com.vkstatistics.utils.extension
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

@@ -1,5 +1,13 @@
 package vkstatistic.apoyark.com.vkstatistics.utils.extension
 
-internal fun LoadImage.loadImage(url: String) {
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 
+internal fun ImageView.loadImage(url: String) {
+
+    Glide.with(this.context)
+            .load(url)
+            .asBitmap()
+            .centerCrop()
+            .into(this)
 }

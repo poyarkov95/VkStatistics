@@ -1,5 +1,10 @@
 package vkstatistic.apoyark.com.vkstatistics.ui.search.interactor
 
-import vkstatistic.apoyark.com.vkstatistics.ui.base.interactor.BaseInteractor
+import io.reactivex.Observable
+import vkstatistic.apoyark.com.vkstatistics.network.response.GroupResponse
+import vkstatistic.apoyark.com.vkstatistics.ui.base.interactor.MVPInteractor
 
-interface SearchMVPInteractor : BaseInteractor
+interface SearchResultMVPInteractor : MVPInteractor {
+
+    fun getGroupList(q: String) : Observable<GroupResponse>
+}
