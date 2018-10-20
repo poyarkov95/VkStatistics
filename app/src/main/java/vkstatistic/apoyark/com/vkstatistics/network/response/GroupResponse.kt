@@ -7,5 +7,5 @@ import vkstatistic.apoyark.com.vkstatistics.network.model.Group
 data class GroupResponse(
         @SerializedName("response")
         @Expose
-        val response: Response<Group>
+        val response: Response<Group>?
 )

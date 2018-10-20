@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_group.view.*
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.network.model.Group
+import vkstatistic.apoyark.com.vkstatistics.network.model.GroupPrivacy
 import vkstatistic.apoyark.com.vkstatistics.utils.extension.loadImage
 
 class SearchResultAdapter(private val searchResult: MutableList<Group>) : RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>() {
@@ -21,9 +22,12 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
         it.onBind(position)
     }
 
-    internal fun addSearchResultToList(searchResult: List<Group>) {
-        this.searchResult.addAll(searchResult)
-        notifyDataSetChanged()
+    internal fun addSearchResultToList(searchResult: List<Group>?) {
+        if(searchResult != null) {
+            this.searchResult.clear()
+            this.searchResult.addAll(searchResult)
+            notifyDataSetChanged()
+        }
     }
 
     inner class SearchResultViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -36,14 +40,15 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
 
         fun onBind(position: Int) {
             val group = searchResult[position]
-            inflateData(group.name, group.photo_50)
+            inflateData(group.name, GroupPrivacy.getByCode(group.is_closed).privacyName, group.photo_100)
             //TODO set on click listener
 
         }
 
-        private fun inflateData(name: String?, imageUrl: String?) {
+        private fun inflateData(name: String?, isClosed: String?, imageUrl: String?) {
             name?.let { itemView.group_name_text_view.text = it }
             imageUrl?.let { itemView.group_cricle_image.loadImage(imageUrl) }
+            isClosed?.let { itemView.members_count_count_text_view.text = isClosed }
         }
     }
 }

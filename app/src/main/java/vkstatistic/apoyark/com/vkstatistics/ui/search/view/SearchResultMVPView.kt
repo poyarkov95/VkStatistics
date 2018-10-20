@@ -5,5 +5,5 @@ import vkstatistic.apoyark.com.vkstatistics.ui.base.view.MVPView
 
 interface SearchResultMVPView : MVPView {
 
-    fun showSearchResult(searchResult: List<Group>)
+    fun showSearchResult(searchResult: List<Group>?)
 }

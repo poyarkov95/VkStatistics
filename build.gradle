@@ -45,4 +45,5 @@ ext {
     gsonVersion = '2.8.0'
     glideVersion = '3.7.0'
     retrofitVersion = '2.3.0'
+    retrofitLoginInterceptor = '3.6.0'
 }

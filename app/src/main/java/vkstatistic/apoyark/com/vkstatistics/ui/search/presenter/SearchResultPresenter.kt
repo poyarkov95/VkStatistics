@@ -17,7 +17,7 @@ class SearchResultPresenter<V : SearchResultMVPView, I : SearchResultMVPInteract
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe { groupResponse ->
                         getView()?.let {
-                            it.showSearchResult(groupResponse.response.items)
+                            it.showSearchResult(groupResponse.response?.items)
                             it.hideProgress()
                         }
                     })

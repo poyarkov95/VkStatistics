@@ -44,11 +44,18 @@ class SearchResultFragment : BaseFragment(), SearchResultMVPView {
         search_recycler_view.adapter = searchResultAdapter
 
         RxBus.subscribe(RxBusConst.SEARCH_CODE, this, Consumer { item ->
-            presenter.searchGroups(item.toString())
+            if (item.toString().isNotEmpty()) {
+                presenter.searchGroups(item.toString())
+            }
         })
     }
 
-    override fun showSearchResult(searchResult: List<Group>) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        presenter.onAttach(this)
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun showSearchResult(searchResult: List<Group>?) {
         searchResultAdapter.addSearchResultToList(searchResult)
     }
 
