@@ -2,10 +2,9 @@ package vkstatistic.apoyark.com.vkstatistics.network.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import vkstatistic.apoyark.com.vkstatistics.network.model.Group
 
-data class GroupResponse(
+data class GroupResponse<T>(
         @SerializedName("response")
         @Expose
-        val response: Response<Group>?
+        val response: Response<T>?
 )

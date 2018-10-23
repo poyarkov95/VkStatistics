@@ -19,7 +19,6 @@ import javax.inject.Inject
 
 
 class SearchResultFragment : BaseFragment(), SearchResultMVPView {
-
     companion object {
         internal val TAG = "SearchResultFragment"
         fun newInstance() : SearchResultFragment {
@@ -30,8 +29,6 @@ class SearchResultFragment : BaseFragment(), SearchResultMVPView {
     @Inject
     internal lateinit var searchResultAdapter: SearchResultAdapter
     @Inject
-    internal lateinit var layoutManager: LinearLayoutManager
-    @Inject
     internal lateinit var presenter: SearchResultMVPPresenter<SearchResultMVPView, SearchResultMVPInteractor>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +36,7 @@ class SearchResultFragment : BaseFragment(), SearchResultMVPView {
             = inflater.inflate(R.layout.fragment_search, container, false)
 
     override fun setUp() {
+        val layoutManager = LinearLayoutManager(getBaseActivity())
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         search_recycler_view.layoutManager = layoutManager
         search_recycler_view.adapter = searchResultAdapter
@@ -51,6 +49,7 @@ class SearchResultFragment : BaseFragment(), SearchResultMVPView {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        search_recycler_view.visibility = View.GONE
         presenter.onAttach(this)
         super.onViewCreated(view, savedInstanceState)
     }
@@ -58,6 +57,17 @@ class SearchResultFragment : BaseFragment(), SearchResultMVPView {
     override fun showSearchResult(searchResult: List<Group>?) {
         searchResultAdapter.addSearchResultToList(searchResult)
     }
+
+    override fun showProgress() {
+        progressBar.visibility = View.VISIBLE
+        search_recycler_view.visibility = View.GONE
+    }
+
+    override fun hideProgress() {
+        progressBar.visibility = View.GONE
+        search_recycler_view.visibility = View.VISIBLE
+    }
+
 
     override fun onDetach() {
         super.onDetach()

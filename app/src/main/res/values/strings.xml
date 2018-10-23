@@ -7,4 +7,6 @@
     <string name="opened_group">Открытое сообщество</string>
     <string name="private_group">Приватное сообщество</string>
 
+    <string name="empty_recycler_view_message">Найдите группу, чтобы просмотреть статистику</string>
+
 </resources>

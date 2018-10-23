@@ -40,9 +40,14 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
 
         fun onBind(position: Int) {
             val group = searchResult[position]
-            inflateData(group.name, GroupPrivacy.getByCode(group.is_closed).privacyName, group.photo_100)
-            //TODO set on click listener
+            inflateData(group.name, GroupPrivacy.getByCode(group.is_closed).toString(), group.photo_100)
+            setItemClickListener(group.id)
+        }
 
+        private fun setItemClickListener(groupId: Int) {
+            itemView.setOnClickListener { view: View ->
+
+            }
         }
 
         private fun inflateData(name: String?, isClosed: String?, imageUrl: String?) {
@@ -51,4 +56,5 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
             isClosed?.let { itemView.members_count_count_text_view.text = isClosed }
         }
     }
+
 }

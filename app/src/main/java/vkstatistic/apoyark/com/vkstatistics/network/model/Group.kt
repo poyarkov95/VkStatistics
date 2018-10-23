@@ -33,5 +33,7 @@ data class Group(
         val photo_100: String,
         @SerializedName("photo_200")
         @Expose
-        val photo_200: String
+        val photo_200: String,
+
+        var membersCount: String
 )
