@@ -3,10 +3,12 @@
 
     <integer name="com_vk_sdk_AppId">6713600</integer>
 
-    <string name="closed_group">Закрытое сообщетсво</string>
-    <string name="opened_group">Открытое сообщество</string>
-    <string name="private_group">Приватное сообщество</string>
+    <string name="closed_group">Closed group</string>
+    <string name="opened_group">Open group</string>
+    <string name="private_group">Private group</string>
 
-    <string name="empty_recycler_view_message">Найдите группу, чтобы просмотреть статистику</string>
+    <string name="empty_recycler_view_message">Search the group to view statistics</string>
+
+    <string name="view_statistics">View stats</string>
 
 </resources>

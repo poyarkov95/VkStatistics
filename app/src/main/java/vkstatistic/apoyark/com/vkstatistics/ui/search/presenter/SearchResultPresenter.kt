@@ -13,7 +13,8 @@ class SearchResultPresenter<V : SearchResultMVPView, I : SearchResultMVPInteract
     override fun searchGroups(q: String) {
         getView()?.showProgress()
         interactor?.let {
-            compositeDisposable.add(it.getGroupList(q)
+            compositeDisposable.add(
+                    it.getGroupList(q)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe { groupResponse ->
                         getView()?.let {

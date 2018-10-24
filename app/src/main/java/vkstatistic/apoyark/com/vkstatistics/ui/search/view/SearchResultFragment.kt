@@ -71,6 +71,7 @@ class SearchResultFragment : BaseFragment(), SearchResultMVPView {
 
     override fun onDetach() {
         super.onDetach()
+        presenter.onDetach()
         RxBus.unregister(this)
     }
 }

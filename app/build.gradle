@@ -32,6 +32,7 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayout"
     implementation "com.android.support:design:$rootProject.supportLibraryVersion"
     implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     compile "com.vk:androidsdk:$rootProject.vksdk"
 
     // reactive
@@ -62,4 +63,5 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.retrofitLoginInterceptor"
+    testImplementation 'junit:junit:4.12'
 }

@@ -16,9 +16,9 @@ class SearchResultFragmentModule {
     internal fun provideSearchResultInteractor(interactor: SearchResultInteractor): SearchResultMVPInteractor = interactor
 
     @Provides
-    internal fun provideSearchResultFragment(presenter: SearchResultPresenter<SearchResultMVPView, SearchResultMVPInteractor>)
+    internal fun provideSearchResultPresenter(presenter: SearchResultPresenter<SearchResultMVPView, SearchResultMVPInteractor>)
             : SearchResultMVPPresenter<SearchResultMVPView, SearchResultMVPInteractor> = presenter
 
     @Provides
-    internal fun provideSearchResultProvider(): SearchResultAdapter = SearchResultAdapter(ArrayList())
+    internal fun provideSearchResultAdapter(): SearchResultAdapter = SearchResultAdapter(ArrayList())
 }

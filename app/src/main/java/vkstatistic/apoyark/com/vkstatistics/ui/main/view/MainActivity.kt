@@ -62,7 +62,7 @@ class MainActivity : BaseActivity(), MainMVPView, HasSupportFragmentInjector {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater?.inflate(R.menu.menu, menu)
+        menuInflater?.inflate(R.menu.main_menu, menu)
         val menuItem: MenuItem? = menu?.findItem(R.id.action_search)
         search_view.setMenuItem(menuItem)
 

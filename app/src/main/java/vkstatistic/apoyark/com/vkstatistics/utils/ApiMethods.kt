@@ -4,5 +4,5 @@ object ApiMethods {
 
     const val SEARCH_GROUPS = "groups.search"
 
-    const val SEARCH_MEMBERS_INFO = "groups.getMembers"
+    const val FIND_GROUP_BY_ID = "groups.getById"
 }

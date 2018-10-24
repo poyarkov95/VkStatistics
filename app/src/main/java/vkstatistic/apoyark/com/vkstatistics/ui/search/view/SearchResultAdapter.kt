@@ -1,5 +1,6 @@
 package vkstatistic.apoyark.com.vkstatistics.ui.search.view
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import kotlinx.android.synthetic.main.item_group.view.*
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.network.model.Group
 import vkstatistic.apoyark.com.vkstatistics.network.model.GroupPrivacy
+import vkstatistic.apoyark.com.vkstatistics.utils.ApiConstants.GROUP_EXTRA
 import vkstatistic.apoyark.com.vkstatistics.utils.extension.loadImage
 
 class SearchResultAdapter(private val searchResult: MutableList<Group>) : RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>() {
@@ -34,27 +36,26 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
 
         fun clear() {
             itemView.group_cricle_image.setImageBitmap(null)
-            itemView.group_name_text_view.text = ""
-            itemView.members_count_count_text_view.text = ""
+            itemView.groupNname_text_view.text = ""
+            itemView.groupStatus_text_view.text = ""
         }
 
         fun onBind(position: Int) {
             val group = searchResult[position]
             inflateData(group.name, GroupPrivacy.getByCode(group.is_closed).toString(), group.photo_100)
-            setItemClickListener(group.id)
+            setItemClickListener(group)
         }
 
-        private fun setItemClickListener(groupId: Int) {
+        private fun setItemClickListener(group: Group) {
             itemView.setOnClickListener { view: View ->
-
+                view.context.startActivity(Intent().putExtra(GROUP_EXTRA, group))
             }
         }
 
         private fun inflateData(name: String?, isClosed: String?, imageUrl: String?) {
-            name?.let { itemView.group_name_text_view.text = it }
+            name?.let { itemView.groupNname_text_view.text = it }
             imageUrl?.let { itemView.group_cricle_image.loadImage(imageUrl) }
-            isClosed?.let { itemView.members_count_count_text_view.text = isClosed }
+            isClosed?.let { itemView.groupStatus_text_view.text = isClosed }
         }
     }
-
 }
