@@ -6,5 +6,5 @@ import vkstatistic.apoyark.com.vkstatistics.ui.groupinfo.view.GroupInfoMVPView
 
 interface GroupInfoMVPPresenter<V : GroupInfoMVPView, I : GroupInfoMVPInteractor> : MVPPresenter<V, I> {
 
-    fun showGroup(groupId: Int)
+    fun searchGroup(groupId: Int?)
 }

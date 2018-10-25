@@ -8,4 +8,8 @@ object ApiConstants {
     internal val DEFAULT_VERSION = 5.87
 
     const val GROUP_EXTRA = "GROUP_EXTRA"
+
+    const val GROUP_ID_EXTRA = "GROUP_ID_EXTRA"
+
+    const val ADDITIONAL_GROUP_INFO_FIELDS = "description,activity,start_date,members_count"
 }

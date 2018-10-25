@@ -10,5 +10,6 @@
     <string name="empty_recycler_view_message">Search the group to view statistics</string>
 
     <string name="view_statistics">View stats</string>
+    <string name="unknown_creation_date">unknown</string>
 
 </resources>

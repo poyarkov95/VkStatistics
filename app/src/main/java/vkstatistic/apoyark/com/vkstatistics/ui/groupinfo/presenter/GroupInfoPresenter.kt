@@ -10,14 +10,14 @@ import javax.inject.Inject
 class GroupInfoPresenter<V : GroupInfoMVPView, I : GroupInfoMVPInteractor> @Inject constructor(interactor: I, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) :
         BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = compositeDisposable), GroupInfoMVPPresenter<V, I> {
 
-    override fun showGroup(groupId: Int) {
+    override fun searchGroup(groupId: Int?) {
         getView()?.showProgress()
         interactor?.let {
             compositeDisposable.add(
                     it.findGroupById(groupId.toString())
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe {groupResponse ->
-                        getView()?.showGroup(groupResponse.response?.item)
+                        getView()?.showGroup(groupResponse.response?.items?.get(0))
                         getView()?.hideProgress()
                     }
             )

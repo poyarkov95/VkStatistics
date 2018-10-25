@@ -1,6 +1,5 @@
 package vkstatistic.apoyark.com.vkstatistics.network.response.common
 
-data class ManyItemsResponse<out T>(
-        val count: Int?,
+data class SingleItemResponse<out T>(
         val items: List<T>
 )

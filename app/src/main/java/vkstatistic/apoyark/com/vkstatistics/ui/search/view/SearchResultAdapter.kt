@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.item_group.view.*
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.network.model.Group
 import vkstatistic.apoyark.com.vkstatistics.network.model.GroupPrivacy
+import vkstatistic.apoyark.com.vkstatistics.ui.groupinfo.view.GroupInfoActivity
 import vkstatistic.apoyark.com.vkstatistics.utils.ApiConstants.GROUP_EXTRA
 import vkstatistic.apoyark.com.vkstatistics.utils.extension.loadImage
 
@@ -48,7 +49,7 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
 
         private fun setItemClickListener(group: Group) {
             itemView.setOnClickListener { view: View ->
-                view.context.startActivity(Intent().putExtra(GROUP_EXTRA, group))
+                view.context.startActivity(Intent(view.context, GroupInfoActivity::class.java).putExtra(GROUP_EXTRA, group))
             }
         }
 
