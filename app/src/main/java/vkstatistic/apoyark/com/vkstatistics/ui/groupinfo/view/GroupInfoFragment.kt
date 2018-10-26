@@ -1,6 +1,7 @@
 package vkstatistic.apoyark.com.vkstatistics.ui.groupinfo.view
 
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,9 @@ class GroupInfoFragment : BaseFragment(), GroupInfoMVPView {
 
     @Inject
     internal lateinit var presenter: GroupInfoMVPPresenter<GroupInfoMVPView, GroupInfoMVPInteractor>
+
+    @Inject
+    internal lateinit var googleFontTypeFace : Typeface
 
     companion object {
         internal const val TAG = "GroupInfoFragment"
@@ -55,9 +59,11 @@ class GroupInfoFragment : BaseFragment(), GroupInfoMVPView {
 
     override fun showGroup(group: Group?) {
         groupActivity_text_view.text = group?.activity
-        creationDateTitle_text_view.text = formatDateString(group?.start_date)
-        description_text_view.text = group?.description
+        creationDateIcon_text_view.typeface = googleFontTypeFace
+        creationDate_text_view.text = formatDateString(group?.start_date)
+        membersCount_icon_text_view.typeface = googleFontTypeFace
         membersCount_text_view.text = group?.members_count
+        description_text_view.text = group?.description
     }
 
     private fun formatDateString(creationDate: String?): String {

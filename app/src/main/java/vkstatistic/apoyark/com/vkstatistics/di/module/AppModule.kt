@@ -2,6 +2,7 @@ package vkstatistic.apoyark.com.vkstatistics.di.module
 
 import android.app.Application
 import android.content.Context
+import android.graphics.Typeface
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -20,4 +21,8 @@ class AppModule {
 
     @Provides
     internal fun provideSchedulerProvider(): SchedulerProvider = SchedulerProvider()
+
+    @Provides
+    @Singleton
+    internal fun provideGoogleTypeface(context: Context) : Typeface = Typeface.createFromAsset(context.assets, "MaterialIcons-Regular.ttf")
 }

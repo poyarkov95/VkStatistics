@@ -9,13 +9,12 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_group_info.*
 import vkstatistic.apoyark.com.vkstatistics.R
-import vkstatistic.apoyark.com.vkstatistics.R.id.action_search
+import vkstatistic.apoyark.com.vkstatistics.R.id.action_back
 import vkstatistic.apoyark.com.vkstatistics.network.model.Group
 import vkstatistic.apoyark.com.vkstatistics.ui.base.view.BaseActivity
 import vkstatistic.apoyark.com.vkstatistics.utils.ApiConstants
 import vkstatistic.apoyark.com.vkstatistics.utils.extension.addFragment
 import vkstatistic.apoyark.com.vkstatistics.utils.extension.loadImage
-
 import javax.inject.Inject
 
 class GroupInfoActivity : BaseActivity(), HasSupportFragmentInjector {
@@ -30,8 +29,8 @@ class GroupInfoActivity : BaseActivity(), HasSupportFragmentInjector {
 
         val group: Group = intent.extras[ApiConstants.GROUP_EXTRA] as Group
 
-        toolbar.title = group.name
-        toolbarImage.loadImage(group.photo_200)
+        supportActionBar?.title = group.name
+        toolbarImage.loadImage(group.getBigSisedGroupImageUrl())
 
         initializeFragment(group.id)
     }
@@ -45,13 +44,13 @@ class GroupInfoActivity : BaseActivity(), HasSupportFragmentInjector {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater?.inflate(R.menu.main_menu, menu)
+        menuInflater?.inflate(R.menu.group_info_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
-            action_search -> {
+            action_back -> {
                 finish()
                 return true
             }

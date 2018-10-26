@@ -1,5 +1,6 @@
 package vkstatistic.apoyark.com.vkstatistics.ui.groupinfo.presenter
 
+import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
 import vkstatistic.apoyark.com.vkstatistics.ui.base.presenter.BasePresenter
 import vkstatistic.apoyark.com.vkstatistics.ui.groupinfo.interactor.GroupInfoMVPInteractor
@@ -15,11 +16,15 @@ class GroupInfoPresenter<V : GroupInfoMVPView, I : GroupInfoMVPInteractor> @Inje
         interactor?.let {
             compositeDisposable.add(
                     it.findGroupById(groupId.toString())
-                    .compose(schedulerProvider.ioToMainObservableScheduler())
-                    .subscribe {groupResponse ->
-                        getView()?.showGroup(groupResponse.response?.items?.get(0))
-                        getView()?.hideProgress()
-                    }
+                            .compose(schedulerProvider.ioToMainObservableScheduler())
+                            .subscribe(
+                                    { groupResponse ->
+                                        getView()?.showGroup(groupResponse.response?.get(0))
+                                        getView()?.hideProgress()
+                                    },
+                                    { error ->
+                                        Log.d("Getting group error", error.message)
+                                    })
             )
         }
     }

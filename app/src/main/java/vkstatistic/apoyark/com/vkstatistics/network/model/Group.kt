@@ -38,53 +38,59 @@ data class Group(
         val photo_200: String,
         @SerializedName("description")
         @Expose
-        val description: String,
+        val description: String?,
         @SerializedName("activity")
         @Expose
         val activity: String?,
         @SerializedName("start_date")
         @Expose
         val start_date: String?,
+        @SerializedName("crop_photo")
+        @Expose
+        val cropPhoto: CropPhoto?,
         @SerializedName("members_count")
         @Expose
         var members_count: String?
 
 ) : Parcelable { // to be able to put it inside intent extras. Parcelable works faster than Serializable
     constructor(parcel: Parcel) : this(
-            id = parcel.readInt(),
-            name = parcel.readString(),
-            screen_name = parcel.readString(),
-            is_closed = parcel.readInt(),
-            type = parcel.readString(),
-            is_admin = parcel.readInt(),
-            is_memberis_member = parcel.readInt(),
-            photo_50 = parcel.readString(),
-            photo_100 = parcel.readString(),
-            photo_200 = parcel.readString(),
-            description = parcel.readString(),
-            activity = parcel.readString(),
-            start_date = parcel.readString(),
-            members_count = parcel.readString())
+            parcel.readInt(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readInt(),
+            parcel.readString(),
+            parcel.readInt(),
+            parcel.readInt(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readParcelable(CropPhoto::class.java.classLoader),
+            parcel.readString())
 
-    override fun writeToParcel(parselable: Parcel, p1: Int) {
-        parselable.writeInt(id)
-        parselable.writeString(name)
-        parselable.writeString(screen_name)
-        parselable.writeInt(is_closed)
-        parselable.writeString(type)
-        parselable.writeInt(is_admin)
-        parselable.writeInt(is_admin)
-        parselable.writeString(photo_50)
-        parselable.writeString(photo_100)
-        parselable.writeString(photo_100)
-        parselable.writeString(photo_200)
-        parselable.writeString(description)
-        parselable.writeString(activity)
-        parselable.writeString(start_date)
-        parselable.writeString(members_count)
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeString(name)
+        parcel.writeString(screen_name)
+        parcel.writeInt(is_closed)
+        parcel.writeString(type)
+        parcel.writeInt(is_admin)
+        parcel.writeInt(is_memberis_member)
+        parcel.writeString(photo_50)
+        parcel.writeString(photo_100)
+        parcel.writeString(photo_200)
+        parcel.writeString(description)
+        parcel.writeString(activity)
+        parcel.writeString(start_date)
+        parcel.writeParcelable(cropPhoto, flags)
+        parcel.writeString(members_count)
     }
 
-    override fun describeContents() = 0
+    override fun describeContents(): Int {
+        return 0
+    }
 
     companion object CREATOR : Parcelable.Creator<Group> {
         override fun createFromParcel(parcel: Parcel): Group {
@@ -94,5 +100,19 @@ data class Group(
         override fun newArray(size: Int): Array<Group?> {
             return arrayOfNulls(size)
         }
+    }
+
+    fun getBigSisedGroupImageUrl(): String {
+        if (cropPhoto != null) {
+            val qSizedImage = cropPhoto.photo.sizes.find { size -> size.type == "q" }
+            if (qSizedImage != null) {
+                return qSizedImage.url
+            }
+            val rSizedImage = cropPhoto.photo.sizes.find { size -> size.type == "r" }
+            if (rSizedImage != null) {
+                return rSizedImage.url
+            }
+        }
+        return photo_200
     }
 }
