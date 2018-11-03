@@ -6,7 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import vkstatistic.apoyark.com.vkstatistics.MyApplication
 import vkstatistic.apoyark.com.vkstatistics.di.builder.ActivityBuilder
-import vkstatistic.apoyark.com.vkstatistics.di.module.AppModule
+import vkstatistic.apoyark.com.vkstatistics.di.global.AppModule
 import javax.inject.Singleton
 
 @Singleton

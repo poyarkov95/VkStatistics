@@ -3,6 +3,7 @@
     package="vkstatistic.apoyark.com.vkstatistics">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApplication"
@@ -12,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.view.MainActivity">
+        <activity android:name=".presentation.ui.main.GroupSearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +24,7 @@
             android:name="com.vk.sdk.VKServiceActivity"
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
-        <activity android:name=".ui.groupinfo.view.GroupInfoActivity"></activity>
+        <activity android:name=".presentation.ui.groupinfo.GroupInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -46,4 +46,6 @@ ext {
     glideVersion = '3.7.0'
     retrofitVersion = '2.3.0'
     retrofitLoginInterceptor = '3.6.0'
+    roomDatabaseVersion = '1.0.0'
+    moxy = '1.5.2'
 }

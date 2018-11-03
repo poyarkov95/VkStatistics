@@ -7,6 +7,7 @@ import com.vk.sdk.VKSdk
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import vkstatistic.apoyark.com.vkstatistics.di.component.AppComponent
 import vkstatistic.apoyark.com.vkstatistics.di.component.DaggerAppComponent
 import javax.inject.Inject
 
@@ -24,10 +25,10 @@ class MyApplication : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
 
-        DaggerAppComponent.builder()
+        applicationComponent = DaggerAppComponent.builder()
                 .application(this)
                 .build()
-                .inject(this)
+        applicationComponent?.inject(this)
 
         VKSdk.initialize(this)
     }
@@ -38,5 +39,8 @@ class MyApplication : Application(), HasActivityInjector {
         fun applicationContext(): Context {
             return instance!!.applicationContext
         }
+        private var applicationComponent: AppComponent? = null
+
+        fun applicationComponent () = applicationComponent
     }
 }

@@ -63,5 +63,14 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.retrofitLoginInterceptor"
+
+    //moxy
+    compile "com.arello-mobile:moxy:$rootProject.moxy"
+    compile "com.arello-mobile:moxy-app-compat:$rootProject.moxy"
+    kapt "com.arello-mobile:moxy-compiler:$rootProject.moxy"
+
+    //test
     testImplementation 'junit:junit:4.12'
+
+
 }

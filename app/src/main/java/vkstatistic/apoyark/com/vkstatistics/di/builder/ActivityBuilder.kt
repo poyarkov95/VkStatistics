@@ -2,18 +2,18 @@ package vkstatistic.apoyark.com.vkstatistics.di.builder
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import vkstatistic.apoyark.com.vkstatistics.ui.groupinfo.GroupInfoFragmentProvider
-import vkstatistic.apoyark.com.vkstatistics.ui.groupinfo.view.GroupInfoActivity
-import vkstatistic.apoyark.com.vkstatistics.ui.main.MainActivityModule
-import vkstatistic.apoyark.com.vkstatistics.ui.main.view.MainActivity
-import vkstatistic.apoyark.com.vkstatistics.ui.search.SearchResultFragmentProvider
+import vkstatistic.apoyark.com.vkstatistics.di.global.DataModule
+import vkstatistic.apoyark.com.vkstatistics.di.global.GroupInfoActivityModule
+import vkstatistic.apoyark.com.vkstatistics.di.global.GroupSearchActivityModule
+import vkstatistic.apoyark.com.vkstatistics.presentation.ui.groupinfo.GroupInfoActivity
+import vkstatistic.apoyark.com.vkstatistics.presentation.ui.main.GroupSearchActivity
 
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = [(MainActivityModule::class), (SearchResultFragmentProvider::class)])
-    abstract fun bindMainActibity(): MainActivity
+    @ContributesAndroidInjector(modules = [(GroupSearchActivityModule::class), (DataModule::class)])
+    abstract fun bindGroupSearchActibity(): GroupSearchActivity
 
-    @ContributesAndroidInjector(modules = [(GroupInfoFragmentProvider::class)])
+    @ContributesAndroidInjector(modules = [(GroupInfoActivityModule::class), (DataModule::class)])
     abstract fun bindGroupInfoActivity(): GroupInfoActivity
 }
