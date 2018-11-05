@@ -12,7 +12,7 @@ import javax.inject.Inject
 @InjectViewState
 class GroupSearchPresenter @Inject constructor(private val groupSearchInteractor: GroupSearchInteractor, private val compositeDisposable: CompositeDisposable, private val schedulerProvider: SchedulerProvider) : BasePresenter<GroupSearchView>(compositeDisposable) {
 
-    var cachedSearchQuery: String = ""
+    private var cachedSearchQuery: String = ""
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
