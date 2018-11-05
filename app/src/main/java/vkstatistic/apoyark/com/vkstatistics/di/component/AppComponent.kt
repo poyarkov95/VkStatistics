@@ -7,10 +7,12 @@ import dagger.android.AndroidInjectionModule
 import vkstatistic.apoyark.com.vkstatistics.MyApplication
 import vkstatistic.apoyark.com.vkstatistics.di.builder.ActivityBuilder
 import vkstatistic.apoyark.com.vkstatistics.di.global.AppModule
+import vkstatistic.apoyark.com.vkstatistics.di.global.DataModule
+import vkstatistic.apoyark.com.vkstatistics.di.global.HttpInterceptorsModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [(AndroidInjectionModule::class), (AppModule::class), (ActivityBuilder::class)])
+@Component(modules = [(AndroidInjectionModule::class), (AppModule::class), (DataModule::class), (ActivityBuilder::class), (HttpInterceptorsModule::class)])
 interface AppComponent {
 
     @Component.Builder

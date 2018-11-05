@@ -14,7 +14,15 @@ interface GroupSearchView : MvpView {
 
     fun showSearchResult(searchResult: List<Group>?)
 
+    fun hideRecyclerView()
+
     fun showProgress()
 
     fun hideProgress()
+
+    fun showErrorView()
+
+    fun hideErrorView()
+
+    fun showErrorMessage(message: String?)
 }

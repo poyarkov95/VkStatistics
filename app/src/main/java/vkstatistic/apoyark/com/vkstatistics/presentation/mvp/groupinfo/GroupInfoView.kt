@@ -10,7 +10,17 @@ interface GroupInfoView : MvpView {
 
     fun showGroup(group: Group?)
 
+    fun showViewContent()
+
+    fun hideViewContent()
+
     fun showProgress()
 
     fun hideProgress()
+
+    fun showErrorView()
+
+    fun hideErrorView()
+
+    fun showErrorMessage(message: String?)
 }

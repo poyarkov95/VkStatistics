@@ -2,10 +2,10 @@ package vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo
 
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.disposables.CompositeDisposable
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.Group
 import vkstatistic.apoyark.com.vkstatistics.domain.groupinfo.GroupInfoInteractor
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.BasePresenter
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerProvider
-import java.util.logging.Logger
 import javax.inject.Inject
 
 @InjectViewState
@@ -14,19 +14,34 @@ class GroupInfoPresenter @Inject constructor(private val groupInfoInteractor: Gr
                                              private val schedulerProvider: SchedulerProvider) :
         BasePresenter<GroupInfoView>(compositeDisposable) {
 
+    var cachedGroupId: Int = 0
+
     fun searchGroup(groupId: Int) {
         viewState.showProgress()
-
+        cachedGroupId = groupId
+        viewState.hideViewContent()
         compositeDisposable.add(
                 groupInfoInteractor.findGroupById(groupId.toString())
                         .observeOn(schedulerProvider.mainThread())
-                        .subscribe ( {group ->
-                            viewState.hideProgress()
-                            viewState.showGroup(group)},
-                                {
-                                    Logger.getLogger(GroupInfoPresenter::class.simpleName, it.message)
-                                }
-                            )
+                        .subscribe(this::onGroupLoaded, this::onGroupLoadError)
         )
+    }
+
+    private fun onGroupLoaded(group: Group) {
+        viewState.hideProgress()
+        viewState.showViewContent()
+        viewState.showGroup(group)
+    }
+
+    private fun onGroupLoadError(throwable: Throwable) {
+        viewState.hideProgress()
+        viewState.showErrorView()
+        viewState.showErrorMessage(throwable.message)
+    }
+
+    fun retryLoad() {
+        viewState.hideErrorView()
+        viewState.showProgress()
+        searchGroup(cachedGroupId)
     }
 }

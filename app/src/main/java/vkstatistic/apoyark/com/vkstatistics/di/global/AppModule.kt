@@ -24,5 +24,5 @@ class AppModule {
 
     @Provides
     @Singleton
-    internal fun provideGoogleTypeface(context: Context): Typeface = Typeface.createFromAsset(context.assets, "MaterialIcons-Regular.ttf")
+    fun provideGoogleTypeface(context: Context): Typeface = Typeface.createFromAsset(context.assets, "MaterialIcons-Regular.ttf")
 }

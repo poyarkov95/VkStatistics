@@ -4,9 +4,11 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_group_info.*
+import kotlinx.android.synthetic.main.network_error_view.view.*
 import vkstatistic.apoyark.com.vkstatistics.AppConstants
 import vkstatistic.apoyark.com.vkstatistics.MyApplication
 import vkstatistic.apoyark.com.vkstatistics.R
@@ -25,7 +27,7 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
     internal lateinit var presenter: GroupInfoPresenter
 
     @Inject
-    internal lateinit var googleFontTypeFace : Typeface
+    internal lateinit var googleFontTypeFace: Typeface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +41,13 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbarImage.loadImage(group.getBigSisedGroupImageUrl())
 
+        no_network_view.retry_button.setOnClickListener({ presenter.retryLoad() })
+
         presenter.searchGroup(group.id)
     }
 
     @ProvidePresenter
-    fun providePresenter() : GroupInfoPresenter {
+    fun providePresenter(): GroupInfoPresenter {
         val component: GroupInfoComponent = DaggerGroupInfoComponent.builder()
                 .appComponent(MyApplication.applicationComponent())
                 .build()
@@ -51,7 +55,7 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId) {
+        when (item?.itemId) {
             android.R.id.home -> {
                 finish()
                 return true
@@ -69,8 +73,16 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         description_text_view.text = group?.description
     }
 
+    override fun showViewContent() {
+        groupInfoContent.visibility = View.VISIBLE
+    }
+
+    override fun hideViewContent() {
+        groupInfoContent.visibility = View.GONE
+    }
+
     private fun formatDateString(creationDate: String?): String {
-        if (creationDate.isNullOrEmpty()) {
+        if (creationDate.isNullOrEmpty() || creationDate.equals("0")) {
             return resources.getString(R.string.unknown_creation_date)
         }
         val delimiter = "/"
@@ -86,6 +98,18 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
 
     override fun hideProgress() {
         progressBar.visibility = View.GONE
+    }
+
+    override fun showErrorMessage(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showErrorView() {
+        no_network_view.visibility = View.VISIBLE
+    }
+
+    override fun hideErrorView() {
+        no_network_view.visibility = View.GONE
     }
 
 

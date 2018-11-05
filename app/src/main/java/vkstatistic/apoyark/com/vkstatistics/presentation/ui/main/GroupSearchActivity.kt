@@ -15,6 +15,7 @@ import com.vk.sdk.VKCallback
 import com.vk.sdk.VKSdk
 import com.vk.sdk.api.VKError
 import kotlinx.android.synthetic.main.activity_group_search.*
+import kotlinx.android.synthetic.main.network_error_view.view.*
 import vkstatistic.apoyark.com.vkstatistics.AppConstants
 import vkstatistic.apoyark.com.vkstatistics.MyApplication
 import vkstatistic.apoyark.com.vkstatistics.R
@@ -45,10 +46,12 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
         setContentView(R.layout.activity_group_search)
         setSupportActionBar(toolbar)
         setRecyclerView()
+
+        no_network_view.retry_button.setOnClickListener({ presenter.retryLoad() })
     }
 
     @ProvidePresenter
-    fun providePresenter() : GroupSearchPresenter {
+    fun providePresenter(): GroupSearchPresenter {
         val component: GroupSearchComponent = DaggerGroupSearchComponent.builder()
                 .appComponent(MyApplication.applicationComponent())
                 .build()
@@ -78,7 +81,7 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if(!newText.isNullOrEmpty()) {
+                if (!newText.isNullOrEmpty()) {
                     presenter.searchGroups(newText!!)
                 }
                 return true
@@ -98,16 +101,31 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
 
     override fun showSearchResult(searchResult: List<Group>?) {
         searchResultAdapter.addSearchResultToList(searchResult)
+        search_recycler_view.visibility = View.VISIBLE
+    }
+
+    override fun hideRecyclerView() {
+        search_recycler_view.visibility = View.GONE
     }
 
     override fun showProgress() {
         progressBar.visibility = View.VISIBLE
-        search_recycler_view.visibility = View.GONE
     }
 
     override fun hideProgress() {
         progressBar.visibility = View.GONE
-        search_recycler_view.visibility = View.VISIBLE
+    }
+
+    override fun showErrorView() {
+        no_network_view.visibility = View.VISIBLE
+    }
+
+    override fun hideErrorView() {
+        no_network_view.visibility = View.GONE
+    }
+
+    override fun showErrorMessage(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.item_group.view.*
 import vkstatistic.apoyark.com.vkstatistics.AppConstants.GROUP_EXTRA
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.Group
-import vkstatistic.apoyark.com.vkstatistics.domain.global.models.GroupPrivacy
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.GroupPrivacyConverter
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.extension.loadImage
 import vkstatistic.apoyark.com.vkstatistics.presentation.ui.groupinfo.GroupInfoActivity
 
@@ -41,9 +41,10 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
             itemView.groupStatus_text_view.text = ""
         }
 
-        fun onBind(position: Int) {
+        fun onBind(position: Int) { //todo might be that I am not allowed to change data inside view component.
             val group = searchResult[position]
-            inflateData(group.name, GroupPrivacy.getByCode(group.is_closed).toString(), group.photo_100)
+            val groupPrivacyConverter = GroupPrivacyConverter()
+            inflateData(group.name, groupPrivacyConverter.getByCode(group.is_closed), group.photo_100)
             setItemClickListener(group)
         }
 

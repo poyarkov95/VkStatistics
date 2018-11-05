@@ -14,6 +14,10 @@
     <string name="count_of_members">Count of members:</string>
     <string name="creation_date">Creation date:</string>
 
+    <string name="no_network_connection_message">No network connection</string>
+    <string name="try_again_message">Try again</string>
+
+
 
     <!--icons-->
     <string name="members_count_icon">&#xe7fd;</string>

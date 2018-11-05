@@ -11,8 +11,8 @@ import vkstatistic.apoyark.com.vkstatistics.presentation.ui.global.adapters.Sear
 class GroupSearchActivityModule {
 
     @Provides
-    internal fun provideGroupSearchInteractor(groupRepository: GroupRepository, schedulerProvider: SchedulerProvider) = GroupSearchInteractor(groupRepository, schedulerProvider)
+    fun provideGroupSearchInteractor(groupRepository: GroupRepository, schedulerProvider: SchedulerProvider) = GroupSearchInteractor(groupRepository, schedulerProvider)
 
     @Provides
-    internal fun provideSearchResultAdapter(): SearchResultAdapter = SearchResultAdapter(ArrayList())
+    fun provideSearchResultAdapter(): SearchResultAdapter = SearchResultAdapter(ArrayList())
 }
