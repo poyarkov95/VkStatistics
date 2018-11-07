@@ -1,4 +1,4 @@
-package vkstatistic.apoyark.com.vkstatistics.domain.global.models
+package vkstatistic.apoyark.com.vkstatistics.domain.global.models.group
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -1,4 +1,4 @@
-package vkstatistic.apoyark.com.vkstatistics.presentation.ui.main
+package vkstatistic.apoyark.com.vkstatistics.presentation.ui.groupsearch
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,7 +21,7 @@ import vkstatistic.apoyark.com.vkstatistics.MyApplication
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.di.groupsearch.DaggerGroupSearchComponent
 import vkstatistic.apoyark.com.vkstatistics.di.groupsearch.GroupSearchComponent
-import vkstatistic.apoyark.com.vkstatistics.domain.global.models.Group
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.Group
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.main.GroupSearchPresenter
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.main.GroupSearchView
 import vkstatistic.apoyark.com.vkstatistics.presentation.ui.global.BaseMvpActivity
@@ -130,6 +130,6 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.onDetach()
+        presenter.onDestroy()
     }
 }

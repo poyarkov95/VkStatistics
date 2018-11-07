@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_group.view.*
 import vkstatistic.apoyark.com.vkstatistics.AppConstants.GROUP_EXTRA
 import vkstatistic.apoyark.com.vkstatistics.R
-import vkstatistic.apoyark.com.vkstatistics.domain.global.models.Group
-import vkstatistic.apoyark.com.vkstatistics.domain.global.models.GroupPrivacyConverter
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.Group
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.GroupPrivacyConverter
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.extension.loadImage
 import vkstatistic.apoyark.com.vkstatistics.presentation.ui.groupinfo.GroupInfoActivity
 

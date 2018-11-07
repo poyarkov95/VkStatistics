@@ -1,10 +1,10 @@
 package vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo
 
 import com.arellomobile.mvp.InjectViewState
+import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
-import vkstatistic.apoyark.com.vkstatistics.domain.global.models.Group
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.Group
 import vkstatistic.apoyark.com.vkstatistics.domain.groupinfo.GroupInfoInteractor
-import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.BasePresenter
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerProvider
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class GroupInfoPresenter @Inject constructor(private val groupInfoInteractor: GroupInfoInteractor,
                                              private val compositeDisposable: CompositeDisposable,
                                              private val schedulerProvider: SchedulerProvider) :
-        BasePresenter<GroupInfoView>(compositeDisposable) {
+        MvpPresenter<GroupInfoView>() {
 
     var cachedGroupId: Int = 0
 
@@ -43,5 +43,10 @@ class GroupInfoPresenter @Inject constructor(private val groupInfoInteractor: Gr
         viewState.hideErrorView()
         viewState.showProgress()
         searchGroup(cachedGroupId)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.dispose()
     }
 }

@@ -1,11 +1,11 @@
-package vkstatistic.apoyark.com.vkstatistics.domain.global.models
+package vkstatistic.apoyark.com.vkstatistics.domain.global.models.group
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Group(
+data class Group( //todo might be there is no need to specify @SerializedName annotation
         @SerializedName("id")
         @Expose
         val id: Int,

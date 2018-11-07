@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.ui.main.GroupSearchActivity">
+        <activity android:name=".presentation.ui.groupsearch.GroupSearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,8 @@
             android:name="com.vk.sdk.VKServiceActivity"
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
-        <activity android:name=".presentation.ui.groupinfo.GroupInfoActivity"></activity>
+        <activity android:name=".presentation.ui.groupinfo.GroupInfoActivity" />
+        <activity android:name=".presentation.ui.statistic.StatisticActivity"></activity>
     </application>
 
 </manifest>

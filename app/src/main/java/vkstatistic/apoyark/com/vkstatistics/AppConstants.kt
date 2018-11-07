@@ -16,4 +16,6 @@ object AppConstants {
     const val SEARCH_GROUPS = "groups.search"
 
     const val FIND_GROUP_BY_ID = "groups.getById"
+
+    const val GET_STATISTICS = "stats.get"
 }

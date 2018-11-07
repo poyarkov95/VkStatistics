@@ -18,9 +18,11 @@
     <string name="try_again_message">Try again</string>
 
 
-
     <!--icons-->
     <string name="members_count_icon">&#xe7fd;</string>
     <string name="creation_date_icon">&#xe192;</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

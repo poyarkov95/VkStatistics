@@ -14,7 +14,7 @@ import vkstatistic.apoyark.com.vkstatistics.MyApplication
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.di.groupinfo.DaggerGroupInfoComponent
 import vkstatistic.apoyark.com.vkstatistics.di.groupinfo.GroupInfoComponent
-import vkstatistic.apoyark.com.vkstatistics.domain.global.models.Group
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.Group
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.extension.loadImage
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo.GroupInfoPresenter
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo.GroupInfoView
@@ -115,6 +115,6 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.onDetach()
+        presenter.onDestroy()
     }
 }

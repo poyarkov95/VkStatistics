@@ -1,4 +1,4 @@
-package vkstatistic.apoyark.com.vkstatistics.domain.global.models
+package vkstatistic.apoyark.com.vkstatistics.domain.global.models.group
 
 import vkstatistic.apoyark.com.vkstatistics.MyApplication
 import vkstatistic.apoyark.com.vkstatistics.R
