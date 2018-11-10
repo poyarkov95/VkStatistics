@@ -45,7 +45,7 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_search)
         setSupportActionBar(toolbar)
-        setRecyclerView()
+        initRecyclerView()
 
         no_network_view.retry_button.setOnClickListener({ presenter.retryLoad() })
     }
@@ -70,7 +70,7 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater?.inflate(R.menu.main_menu, menu)
+        menuInflater?.inflate(R.menu.search_menu, menu)
         val menuItem: MenuItem? = menu?.findItem(R.id.action_search)
         search_view.setMenuItem(menuItem)
 
@@ -92,7 +92,7 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
         return true
     }
 
-    private fun setRecyclerView() {
+    private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         search_recycler_view.layoutManager = layoutManager

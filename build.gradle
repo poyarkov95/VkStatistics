@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -48,4 +49,5 @@ ext {
     retrofitLoginInterceptor = '3.6.0'
     roomDatabaseVersion = '1.0.0'
     moxy = '1.5.2'
+    chartVersion = 'v3.1.0-alpha'
 }

@@ -20,6 +20,4 @@ interface GroupApi {
 
     @GET(AppConstants.GET_STATISTICS)
     fun getStatistics(@QueryMap map: Map<String, String?>): Single<StatisticResponse<Statistic>>
-
-
 }

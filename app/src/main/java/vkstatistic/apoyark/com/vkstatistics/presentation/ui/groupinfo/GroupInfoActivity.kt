@@ -1,5 +1,6 @@
 package vkstatistic.apoyark.com.vkstatistics.presentation.ui.groupinfo
 
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.MenuItem
@@ -19,6 +20,7 @@ import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.extension.lo
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo.GroupInfoPresenter
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo.GroupInfoView
 import vkstatistic.apoyark.com.vkstatistics.presentation.ui.global.BaseMvpActivity
+import vkstatistic.apoyark.com.vkstatistics.presentation.ui.statistic.StatisticActivity
 import javax.inject.Inject
 
 class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
@@ -33,15 +35,17 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_info)
 
-        setSupportActionBar(toolbar)
-
         val group: Group = intent.extras[AppConstants.GROUP_EXTRA] as Group
 
-        supportActionBar?.title = group.name
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbarImage.loadImage(group.getBigSisedGroupImageUrl())
+        initToolbar(group)
 
         no_network_view.retry_button.setOnClickListener({ presenter.retryLoad() })
+
+        viewStats_button.setOnClickListener({
+            val intent = Intent(this, StatisticActivity::class.java)
+            startActivity(intent)
+
+        })
 
         presenter.searchGroup(group.id)
     }
@@ -62,6 +66,14 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
             }
         }
         return true
+    }
+
+    private fun initToolbar(group: Group) {
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.title = group.name
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbarImage.loadImage(group.getBigSisedGroupImageUrl())
     }
 
     override fun showGroup(group: Group?) {
