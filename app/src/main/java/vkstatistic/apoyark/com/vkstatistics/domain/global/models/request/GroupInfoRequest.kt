@@ -10,5 +10,4 @@ data class GroupInfoRequest(@SerializedName(VKApiConst.GROUP_ID) private val gro
         map[VKApiConst.GROUP_ID] = groupId
         map[VKApiConst.FIELDS] = AppConstants.ADDITIONAL_GROUP_INFO_FIELDS
     }
-
 }

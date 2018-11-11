@@ -1,49 +1,50 @@
-package vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo
+package vkstatistic.apoyark.com.vkstatistics.presentation.mvp.statistic
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
-import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.Group
-import vkstatistic.apoyark.com.vkstatistics.domain.groupinfo.GroupInfoInteractor
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.statistic.StatisticModel
+import vkstatistic.apoyark.com.vkstatistics.domain.statistic.StatisticInteractor
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerProvider
 import javax.inject.Inject
 
 @InjectViewState
-class GroupInfoPresenter @Inject constructor(private val groupInfoInteractor: GroupInfoInteractor,
+class StatisticPresenter @Inject constructor(private val statisticInteractor: StatisticInteractor,
                                              private val compositeDisposable: CompositeDisposable,
                                              private val schedulerProvider: SchedulerProvider)
-    : MvpPresenter<GroupInfoView>() {
+    : MvpPresenter<StatisticView>() {
 
-    var cachedGroupId: Int = 0
+     var cachedGroupId: Int = 0
 
-    fun searchGroup(groupId: Int) {
+    fun findGroupStatistic(groupId: Int) {
         viewState.showProgress()
         cachedGroupId = groupId
         viewState.hideViewContent()
         compositeDisposable.add(
-                groupInfoInteractor.findGroupById(groupId.toString())
+                statisticInteractor.findGroupStatistic(groupId.toString())
                         .observeOn(schedulerProvider.mainThread())
-                        .subscribe(this::onGroupLoaded, this::onGroupLoadError)
+                        .subscribe (this::onStatisticLoaded, this::onStatisticLoadError)
         )
     }
 
-    private fun onGroupLoaded(group: Group) {
+    private fun onStatisticLoaded(statisticModel: StatisticModel) {
         viewState.hideProgress()
         viewState.showViewContent()
-        viewState.showGroup(group)
+        viewState.showStatistics(statisticModel)
     }
 
-    private fun onGroupLoadError(throwable: Throwable) {
+    private fun onStatisticLoadError(throwable: Throwable) {
         viewState.hideProgress()
         viewState.showErrorView()
         viewState.showErrorMessage(throwable.message)
     }
 
-    fun retryLoad() {
+    private fun retryLoad() {
         viewState.hideErrorView()
         viewState.showProgress()
-        searchGroup(cachedGroupId)
+        findGroupStatistic(cachedGroupId)
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

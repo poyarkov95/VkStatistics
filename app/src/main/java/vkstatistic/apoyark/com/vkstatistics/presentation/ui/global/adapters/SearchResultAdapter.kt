@@ -1,12 +1,15 @@
 package vkstatistic.apoyark.com.vkstatistics.presentation.ui.global.adapters
 
 import android.content.Intent
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_group.view.*
-import vkstatistic.apoyark.com.vkstatistics.AppConstants.GROUP_EXTRA
+import vkstatistic.apoyark.com.vkstatistics.AppConstants.GROUP_ID_EXTRA
+import vkstatistic.apoyark.com.vkstatistics.AppConstants.GROUP_IMAGE_URL_EXTRA
+import vkstatistic.apoyark.com.vkstatistics.AppConstants.GROUP_NAME_EXTRA
 import vkstatistic.apoyark.com.vkstatistics.R
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.Group
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.GroupPrivacyConverter
@@ -41,7 +44,7 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
             itemView.groupStatus_text_view.text = ""
         }
 
-        fun onBind(position: Int) { //todo might be that I am not allowed to change data inside view component.
+        fun onBind(position: Int) {
             val group = searchResult[position]
             val groupPrivacyConverter = GroupPrivacyConverter()
             inflateData(group.name, groupPrivacyConverter.getByCode(group.is_closed), group.photo_100)
@@ -50,7 +53,11 @@ class SearchResultAdapter(private val searchResult: MutableList<Group>) : Recycl
 
         private fun setItemClickListener(group: Group) {
             itemView.setOnClickListener { view: View ->
-                view.context.startActivity(Intent(view.context, GroupInfoActivity::class.java).putExtra(GROUP_EXTRA, group))
+                val bundle = Bundle()
+                bundle.putInt(GROUP_ID_EXTRA, group.id)
+                bundle.putString(GROUP_IMAGE_URL_EXTRA, group.getBigSizedGroupImageUrl())
+                bundle.putString(GROUP_NAME_EXTRA, group.name)
+                view.context.startActivity(Intent(view.context, GroupInfoActivity::class.java).putExtras(bundle))
             }
         }
 

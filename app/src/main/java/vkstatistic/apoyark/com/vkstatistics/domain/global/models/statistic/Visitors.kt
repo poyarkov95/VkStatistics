@@ -1,6 +1,6 @@
 package vkstatistic.apoyark.com.vkstatistics.domain.global.models.statistic
 
-data class Visitors(
+data class  Visitors(
         val views: Int,
         val visitors: Int,
         val mobile_views: Int,
@@ -8,5 +8,5 @@ data class Visitors(
         val age: List<Age>,
         val sex_age: List<SexAge>,
         val countries: List<Country>,
-        val cities: List<Any>
+        val cities: List<City>
 )

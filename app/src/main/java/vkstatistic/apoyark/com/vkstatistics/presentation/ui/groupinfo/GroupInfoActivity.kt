@@ -35,19 +35,20 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_info)
 
-        val group: Group = intent.extras[AppConstants.GROUP_EXTRA] as Group
-
-        initToolbar(group)
+        initToolbar()
 
         no_network_view.retry_button.setOnClickListener({ presenter.retryLoad() })
 
         viewStats_button.setOnClickListener({
-            val intent = Intent(this, StatisticActivity::class.java)
-            startActivity(intent)
+
+            val bundle = Bundle()
+            bundle.putInt(AppConstants.GROUP_ID_EXTRA, intent.extras.getInt(AppConstants.GROUP_ID_EXTRA))
+            intent.putExtras(bundle)
+            startActivity(Intent(this, StatisticActivity::class.java).putExtras(bundle))
 
         })
 
-        presenter.searchGroup(group.id)
+        presenter.searchGroup(intent.extras.getInt(AppConstants.GROUP_ID_EXTRA))
     }
 
     @ProvidePresenter
@@ -68,12 +69,12 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         return true
     }
 
-    private fun initToolbar(group: Group) {
+    private fun initToolbar() {
         setSupportActionBar(toolbar)
 
-        supportActionBar?.title = group.name
+        supportActionBar?.title = intent.extras.getString(AppConstants.GROUP_NAME_EXTRA)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbarImage.loadImage(group.getBigSisedGroupImageUrl())
+        toolbarImage.loadImage(intent.extras.getString(AppConstants.GROUP_IMAGE_URL_EXTRA))
     }
 
     override fun showGroup(group: Group?) {

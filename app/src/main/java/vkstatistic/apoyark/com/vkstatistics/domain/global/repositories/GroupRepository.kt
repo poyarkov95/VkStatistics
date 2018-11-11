@@ -10,5 +10,5 @@ interface GroupRepository {
 
     fun findGroupById(groupId: String) : Single<Group>
 
-    fun findGroupStatistic(groupId: String) : Single<Statistic>
+    fun findGroupStatistic(groupId: String) : Single<List<Statistic>>
 }

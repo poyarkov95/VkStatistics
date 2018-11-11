@@ -9,6 +9,10 @@ object AppConstants {
 
     const val GROUP_EXTRA = "GROUP_EXTRA"
 
+    const val GROUP_IMAGE_URL_EXTRA = "GROUP_IMAGE_URL_EXTRA"
+
+    const val GROUP_NAME_EXTRA = "GROUP_NAME_EXTRA"
+
     const val GROUP_ID_EXTRA = "GROUP_ID_EXTRA"
 
     const val ADDITIONAL_GROUP_INFO_FIELDS = "description,activity,start_date,crop_photo,members_count"
@@ -18,4 +22,8 @@ object AppConstants {
     const val FIND_GROUP_BY_ID = "groups.getById"
 
     const val GET_STATISTICS = "stats.get"
+
+    const val STATISTIC_AGGREGATION_KEY = "stats_groups"
+
+    const val STATISTIC_AGGREGATION_VALUE = "visitors"
 }

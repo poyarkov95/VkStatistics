@@ -7,7 +7,7 @@ import vkstatistic.apoyark.com.vkstatistics.domain.statistic.StatisticInteractor
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerProvider
 
 @Module
-class ChartFragmentModule {
+class StatisticActivityModule {
 
     @Provides
     fun provideStatisticInteractor(groupRepository: GroupRepository, schedulerProvider: SchedulerProvider)

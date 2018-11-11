@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class StatisticResponse<out T>(
         @SerializedName("response")
         @Expose
-        val response: T
+        val response: List<T>
 )

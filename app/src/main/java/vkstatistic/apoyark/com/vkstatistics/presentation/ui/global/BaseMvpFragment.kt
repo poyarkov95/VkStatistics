@@ -10,9 +10,9 @@ abstract class BaseMvpFragment : Fragment() {
     private var parentActivity: BaseMvpActivity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        performDependencyInjection()
         super.onCreate(savedInstanceState)
         retainInstance = true
-        performDependencyInjection()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

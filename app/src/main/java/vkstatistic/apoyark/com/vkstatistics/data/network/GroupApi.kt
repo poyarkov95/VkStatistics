@@ -19,5 +19,5 @@ interface GroupApi {
     fun findGroupById(@QueryMap map: Map<String, String?>): Single<GroupResponse<Group>>
 
     @GET(AppConstants.GET_STATISTICS)
-    fun getStatistics(@QueryMap map: Map<String, String?>): Single<StatisticResponse<Statistic>>
+    fun findGroupStatistics(@QueryMap map: Map<String, String?>): Single<StatisticResponse<Statistic>>
 }
