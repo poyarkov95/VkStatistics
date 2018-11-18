@@ -75,5 +75,7 @@ dependencies {
     //test
     testImplementation 'junit:junit:4.12'
 
+    // joda time
+    compile group: 'joda-time', name: 'joda-time', version: "$rootProject.jodaTime"
 
 }

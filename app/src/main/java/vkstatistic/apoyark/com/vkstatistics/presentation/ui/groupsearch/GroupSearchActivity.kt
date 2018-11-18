@@ -36,7 +36,6 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
     @Inject
     internal lateinit var searchResultAdapter: SearchResultAdapter
 
-
     override fun startSignIn() {
         VKSdk.login(this, AppConstants.DEFAULT_LOGIN_SCOPE.toString())
     }
@@ -76,7 +75,6 @@ class GroupSearchActivity : BaseMvpActivity(), GroupSearchView {
 
         search_view.setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Toast.makeText(applicationContext, query, Toast.LENGTH_SHORT).show()
                 return true
             }
 

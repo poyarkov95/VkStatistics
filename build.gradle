@@ -20,6 +20,8 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://dl.bintray.com/terrakok/terramaven/' }
+
     }
 }
 
@@ -50,4 +52,5 @@ ext {
     roomDatabaseVersion = '1.0.0'
     moxy = '1.5.2'
     chartVersion = 'v3.1.0-alpha'
+    jodaTime = '2.9.9'
 }

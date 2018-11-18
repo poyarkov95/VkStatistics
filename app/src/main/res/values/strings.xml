@@ -18,9 +18,13 @@
     <string name="try_again_message">Try again</string>
 
     <string name="group_statistic">Group statistic</string>
+    <string name="statistic">statistic</string>
     <string name="gender">Gender</string>
     <string name="cities">Cities</string>
     <string name="age">Age</string>
+
+    <string name="chart_description">group stats for the past year</string>
+    <string name="no_chart_data_message">Unfortunately there is no available statistic.</string>
 
 
     <!--icons-->

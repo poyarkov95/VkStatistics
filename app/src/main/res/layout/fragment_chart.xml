@@ -4,8 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
+    <RelativeLayout
+        android:id="@+id/chartContentFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/seekBar"/>
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="35dp"
+            android:layout_toLeftOf="@+id/seekBarInfo"
+            android:layout_marginRight="5dp"
+            android:paddingBottom="12dp"
+            android:layout_toStartOf="@+id/seekBarInfo"
+            android:layout_marginEnd="5dp" />
+
+        <TextView
+            android:id="@+id/seekBarInfo"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/seekBar"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp" />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/emptyChartView"
+        layout="@layout/empty_chart_view" />
 </LinearLayout>

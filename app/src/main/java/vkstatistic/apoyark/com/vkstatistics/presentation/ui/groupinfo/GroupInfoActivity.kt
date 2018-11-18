@@ -43,9 +43,9 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
 
             val bundle = Bundle()
             bundle.putInt(AppConstants.GROUP_ID_EXTRA, intent.extras.getInt(AppConstants.GROUP_ID_EXTRA))
+            bundle.putString(AppConstants.GROUP_NAME_EXTRA, intent.extras.getString(AppConstants.GROUP_NAME_EXTRA))
             intent.putExtras(bundle)
             startActivity(Intent(this, StatisticActivity::class.java).putExtras(bundle))
-
         })
 
         presenter.searchGroup(intent.extras.getInt(AppConstants.GROUP_ID_EXTRA))
@@ -86,14 +86,6 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         description_text_view.text = group?.description
     }
 
-    override fun showViewContent() {
-        groupInfoContent.visibility = View.VISIBLE
-    }
-
-    override fun hideViewContent() {
-        groupInfoContent.visibility = View.GONE
-    }
-
     private fun formatDateString(creationDate: String?): String {
         if (creationDate.isNullOrEmpty() || creationDate.equals("0")) {
             return resources.getString(R.string.unknown_creation_date)
@@ -101,8 +93,17 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         val delimiter = "/"
         val year = creationDate?.substring(IntRange(0, 3))
         val month = creationDate?.substring(IntRange(4, 5))
-        val dey = creationDate?.substring(6, 7)
+        val dey = creationDate?.substring(6, 8)
         return year.plus(delimiter).plus(month).plus(delimiter).plus(dey)
+    }
+
+
+    override fun showViewContent() {
+        groupInfoContent.visibility = View.VISIBLE
+    }
+
+    override fun hideViewContent() {
+        groupInfoContent.visibility = View.GONE
     }
 
     override fun showProgress() {

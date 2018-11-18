@@ -7,29 +7,32 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import kotlinx.android.synthetic.main.fragment_chart.*
+import vkstatistic.apoyark.com.vkstatistics.AppConstants.CHART_MODEL
+import vkstatistic.apoyark.com.vkstatistics.AppConstants.CHART_TYPE_TAG
+import vkstatistic.apoyark.com.vkstatistics.AppConstants.GROUP_NAME_EXTRA
 import vkstatistic.apoyark.com.vkstatistics.R
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.ChartType
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.statistic.StatisticModel
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.statistic.ChartView
 
-class PieChartFragment : Fragment(), ChartView {
+class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener {
 
     companion object {
-        private val CHART_TYPE_TAG = "chart_tag"
 
-        private lateinit var _statisticModel: StatisticModel
-
-        fun newInstance(chartType: ChartType, statisticModel: StatisticModel): PieChartFragment {
-            _statisticModel = statisticModel
-
+        fun newInstance(chartType: ChartType, statisticModel: StatisticModel, groupName: String): PieChartFragment {
             val fragment = PieChartFragment()
             val bundle = Bundle()
             bundle.putSerializable(CHART_TYPE_TAG, chartType)
+            bundle.putSerializable(CHART_MODEL, statisticModel)
+            bundle.putString(GROUP_NAME_EXTRA, groupName)
             fragment.arguments = bundle
             return fragment
         }
@@ -46,38 +49,58 @@ class PieChartFragment : Fragment(), ChartView {
         setUp()
     }
 
-     fun setUp() {
-        pieChart.centerText = "Provide here group name"
-        pieChart.setCenterTextSize(10f)
+    private fun setUp() {
+        val statisticModel = arguments?.getSerializable(CHART_MODEL) as StatisticModel
+        val chartType = arguments?.getSerializable(CHART_TYPE_TAG) as ChartType
 
-        pieChart.holeRadius = 45f
+        if (statisticModel.isAvailable(chartType)) {
+            emptyChartView.visibility = View.GONE
+            chartContentFrame.visibility = View.VISIBLE
+
+            drawChart(statisticModel, chartType)
+        } else {
+            emptyChartView.visibility = View.VISIBLE
+            chartContentFrame.visibility = View.GONE
+        }
+    }
+
+    private fun drawChart(statisticModel: StatisticModel, chartType: ChartType) {
+        val groupName = arguments?.getString(GROUP_NAME_EXTRA)
+        pieChart.centerText = "'$groupName' ${resources.getString(R.string.chart_description)}"
+
+        pieChart.animateY(1400, Easing.EaseInOutQuad)
+
+        pieChart.extraBottomOffset = 90f
+        pieChart.setCenterTextSize(10f)
+        pieChart.holeRadius = 60f
         pieChart.transparentCircleRadius = 50f
 
-        pieChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.CENTER
-        pieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
+        pieChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
+        pieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
         pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
 
+
+        pieChart.description.isEnabled = false
         pieChart.legend.setDrawInside(false)
 
         val entries = ArrayList<PieEntry>()
-        val chartType = arguments?.getSerializable(CHART_TYPE_TAG)
 
         when (chartType) {
 
             ChartType.CITIES -> {
-                _statisticModel.cityMap.forEach { cityName, count -> entries.add(PieEntry(count, cityName)) }
+                statisticModel.cityMap.forEach { cityName, count -> entries.add(PieEntry(count, cityName)) }
             }
 
             ChartType.AGE -> {
-                _statisticModel.ageMap.forEach { age, count -> entries.add(PieEntry(count, age)) }
+                statisticModel.ageMap.forEach { age, count -> entries.add(PieEntry(count, age)) }
             }
 
             ChartType.GENDER -> {
-                _statisticModel.genderMap.forEach { gender, count -> entries.add(PieEntry(count, gender)) }
+                statisticModel.genderMap.forEach { gender, count -> entries.add(PieEntry(count, gender)) }
             }
         }
 
-        val pieChartDataSet = PieDataSet(entries, "Put some text here")
+        val pieChartDataSet = PieDataSet(entries, groupName)
         pieChartDataSet.colors = ColorTemplate.VORDIPLOM_COLORS.toList()
         pieChartDataSet.sliceSpace = 2f
         pieChartDataSet.valueLineColor = Color.WHITE
@@ -87,7 +110,15 @@ class PieChartFragment : Fragment(), ChartView {
         pieChart.data = pieData
     }
 
-    enum class ChartType {
-        CITIES, AGE, GENDER
+    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+        
+    }
+
+    override fun onStartTrackingTouch(p0: SeekBar?) {
+
+    }
+
+    override fun onStopTrackingTouch(p0: SeekBar?) {
+
     }
 }

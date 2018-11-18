@@ -6,7 +6,7 @@ import vkstatistic.apoyark.com.vkstatistics.AppConstants
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.CurrentUser
 
 abstract class BaseRequestModel(@SerializedName(VKApiConst.VERSION)
-                                val version: Double = AppConstants.DEFAULT_VERSION,
+                                val version: Double = AppConstants.VK_API_VERSION,
 
                                 @SerializedName(VKApiConst.ACCESS_TOKEN)
                                 val accessToken: String? = CurrentUser.getAccessToken()) {

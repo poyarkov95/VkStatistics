@@ -22,5 +22,4 @@ class NetworkCheckerInterceptor(val networkChecker: NetworkChecker) : Intercepto
             throw UnknownHostException()
         }
     }
-
 }

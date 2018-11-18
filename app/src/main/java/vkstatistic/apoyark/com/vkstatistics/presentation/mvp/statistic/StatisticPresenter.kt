@@ -14,7 +14,7 @@ class StatisticPresenter @Inject constructor(private val statisticInteractor: St
                                              private val schedulerProvider: SchedulerProvider)
     : MvpPresenter<StatisticView>() {
 
-     var cachedGroupId: Int = 0
+    private var cachedGroupId: Int = 0
 
     fun findGroupStatistic(groupId: Int) {
         viewState.showProgress()
@@ -23,7 +23,7 @@ class StatisticPresenter @Inject constructor(private val statisticInteractor: St
         compositeDisposable.add(
                 statisticInteractor.findGroupStatistic(groupId.toString())
                         .observeOn(schedulerProvider.mainThread())
-                        .subscribe (this::onStatisticLoaded, this::onStatisticLoadError)
+                        .subscribe(this::onStatisticLoaded, this::onStatisticLoadError)
         )
     }
 
@@ -39,12 +39,11 @@ class StatisticPresenter @Inject constructor(private val statisticInteractor: St
         viewState.showErrorMessage(throwable.message)
     }
 
-    private fun retryLoad() {
+    fun retryLoad() {
         viewState.hideErrorView()
         viewState.showProgress()
         findGroupStatistic(cachedGroupId)
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
