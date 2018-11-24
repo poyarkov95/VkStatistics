@@ -21,7 +21,6 @@ class StatisticModelMapper {
                     }
                 }
 
-
                 it.visitors.age?.forEach {
                     if (cityMap.containsKey(it.value)) {
                         cityMap[it.value]?.plus(it.count)
@@ -38,8 +37,7 @@ class StatisticModelMapper {
                     }
                 }
             }
-
-            return Single.just(StatisticModel(cityMap, ageMap, genderMap))
+            return Single.just(StatisticModel(cityMap.toList(), ageMap.toList(), genderMap.toList()))
         }
     }
 }

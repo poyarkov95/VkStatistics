@@ -55,70 +55,108 @@ class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener 
 
         if (statisticModel.isAvailable(chartType)) {
             emptyChartView.visibility = View.GONE
-            chartContentFrame.visibility = View.VISIBLE
+            chartContent.visibility = View.VISIBLE
 
             drawChart(statisticModel, chartType)
         } else {
             emptyChartView.visibility = View.VISIBLE
-            chartContentFrame.visibility = View.GONE
+            chartContent.visibility = View.GONE
         }
     }
 
     private fun drawChart(statisticModel: StatisticModel, chartType: ChartType) {
         val groupName = arguments?.getString(GROUP_NAME_EXTRA)
-        pieChart.centerText = "'$groupName' ${resources.getString(R.string.chart_description)}"
+        pieChart.centerText = "$groupName ${resources.getString(R.string.chart_description)}"
 
         pieChart.animateY(1400, Easing.EaseInOutQuad)
 
-        pieChart.extraBottomOffset = 90f
+        pieChart.setExtraOffsets(10f, 10f, 10f, 30f)
         pieChart.setCenterTextSize(10f)
         pieChart.holeRadius = 60f
         pieChart.transparentCircleRadius = 50f
 
-        pieChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
-        pieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
+        pieChart.legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        pieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         pieChart.legend.orientation = Legend.LegendOrientation.VERTICAL
+        pieChart.legend.xOffset = 10f
+        pieChart.legend.yOffset = 10f
 
 
         pieChart.description.isEnabled = false
         pieChart.legend.setDrawInside(false)
 
+        seekBar.setOnSeekBarChangeListener(this)
+        val chartSize = statisticModel.getSize(chartType)
+        seekBar.max = chartSize
+        val chartProgress = calculateProgress(chartSize)
+        seekBar.progress = chartProgress
+
+        setData(chartProgress)
+    }
+
+    private fun setData(size: Int) {
+        val statisticModel = arguments?.getSerializable(CHART_MODEL) as StatisticModel
+        val chartType = arguments?.getSerializable(CHART_TYPE_TAG) as ChartType
         val entries = ArrayList<PieEntry>()
 
         when (chartType) {
 
             ChartType.CITIES -> {
-                statisticModel.cityMap.forEach { cityName, count -> entries.add(PieEntry(count, cityName)) }
+                statisticModel.cityStat.take(size).forEach { pair -> entries.add(PieEntry(pair.second, pair.first)) }
             }
 
             ChartType.AGE -> {
-                statisticModel.ageMap.forEach { age, count -> entries.add(PieEntry(count, age)) }
+                statisticModel.ageStat.take(size).forEach { pair -> entries.add(PieEntry(pair.second, pair.first)) }
             }
 
             ChartType.GENDER -> {
-                statisticModel.genderMap.forEach { gender, count -> entries.add(PieEntry(count, gender)) }
+                statisticModel.ageStat.take(size).forEach { pair -> entries.add(PieEntry(pair.second, pair.first)) }
             }
         }
 
-        val pieChartDataSet = PieDataSet(entries, groupName)
-        pieChartDataSet.colors = ColorTemplate.VORDIPLOM_COLORS.toList()
+        val pieChartDataSet = PieDataSet(entries, arguments?.getString(GROUP_NAME_EXTRA))
+
+        pieChartDataSet.colors = getChartColors()
         pieChartDataSet.sliceSpace = 2f
         pieChartDataSet.valueLineColor = Color.WHITE
         pieChartDataSet.valueTextSize = 12f
 
         val pieData = PieData(pieChartDataSet)
         pieChart.data = pieData
+        pieChart.invalidate()
     }
 
-    override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-        
+    override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+        seekBarProgress.text = "${resources.getString(R.string.amount_of_presenting_date)} $progress"
+
+        setData(progress)
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) {
-
+        //not used
     }
 
     override fun onStopTrackingTouch(p0: SeekBar?) {
+        //not used
+    }
 
+    private fun calculateProgress(dataSize: Int): Int {
+        when (dataSize) {
+            1 -> return 1
+            2 -> return 2
+        }
+        return dataSize.div(2)
+    }
+
+    private fun getChartColors() : List<Int> {
+        val colors = ArrayList<Int>()
+
+        ColorTemplate.VORDIPLOM_COLORS.toList().forEach { colors.add(it) }
+        ColorTemplate.JOYFUL_COLORS.toList().forEach { colors.add(it) }
+        ColorTemplate.COLORFUL_COLORS.toList().forEach { colors.add(it) }
+        ColorTemplate.LIBERTY_COLORS.toList().forEach { colors.add(it) }
+        ColorTemplate.PASTEL_COLORS.toList().forEach { colors.add(it) }
+
+        return colors
     }
 }

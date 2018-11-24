@@ -25,6 +25,7 @@
 
     <string name="chart_description">group stats for the past year</string>
     <string name="no_chart_data_message">Unfortunately there is no available statistic.</string>
+    <string name="amount_of_presenting_date">Amount of presenting data:</string>
 
 
     <!--icons-->

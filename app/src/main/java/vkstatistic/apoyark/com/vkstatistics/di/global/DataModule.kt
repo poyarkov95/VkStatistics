@@ -1,5 +1,7 @@
 package vkstatistic.apoyark.com.vkstatistics.di.global
 
+import com.google.gson.GsonBuilder
+import com.vk.sdk.api.VKError
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -13,6 +15,7 @@ import vkstatistic.apoyark.com.vkstatistics.data.network.NetworkChecker
 import vkstatistic.apoyark.com.vkstatistics.data.network.interseptors.NetworkCheckerInterceptor
 import vkstatistic.apoyark.com.vkstatistics.data.repositories.GroupRepositoryImpl
 import vkstatistic.apoyark.com.vkstatistics.di.global.qualifiers.OkHttpLoggingInterceptor
+import vkstatistic.apoyark.com.vkstatistics.domain.global.models.deserialization.ErrorTypeAdapter
 import vkstatistic.apoyark.com.vkstatistics.domain.global.repositories.GroupRepository
 import javax.inject.Singleton
 
@@ -25,9 +28,10 @@ class DataModule {
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        val gson = GsonBuilder().apply { registerTypeAdapter(VKError::class.java, ErrorTypeAdapter()) }.create()
         return Retrofit.Builder()
                 .baseUrl(AppConstants.VK_BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build()

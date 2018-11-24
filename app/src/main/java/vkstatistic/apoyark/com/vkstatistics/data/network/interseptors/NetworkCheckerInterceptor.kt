@@ -7,7 +7,7 @@ import vkstatistic.apoyark.com.vkstatistics.data.network.exceptions.NoNetworkCon
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
-class NetworkCheckerInterceptor(val networkChecker: NetworkChecker) : Interceptor {
+class NetworkCheckerInterceptor(private val networkChecker: NetworkChecker) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
