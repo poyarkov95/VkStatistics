@@ -3,7 +3,7 @@ package vkstatistic.apoyark.com.vkstatistics.data.repositories
 import com.vk.sdk.api.VKError
 import io.reactivex.Single
 import vkstatistic.apoyark.com.vkstatistics.data.network.GroupApi
-import vkstatistic.apoyark.com.vkstatistics.data.network.exceptions.NoPermissionsError
+import vkstatistic.apoyark.com.vkstatistics.data.network.exceptions.NoPermissionsException
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.group.Group
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.request.GroupInfoRequest
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.request.GroupSearchRequest
@@ -20,7 +20,7 @@ class GroupRepositoryImpl @Inject constructor(private val groupApi: GroupApi) : 
 
     override fun findGroupById(groupId: String): Single<Group> {
         return groupApi.findGroupById(GroupInfoRequest(groupId).toMap())
-                .flatMap { groupResponse -> Single.just(groupResponse.response.first()) } // todo think about it's first
+                .flatMap { groupResponse -> Single.just(groupResponse.response.first()) }
     }
 
     override fun findGroupStatistic(groupId: String): Single<List<Statistic>> {
@@ -35,7 +35,7 @@ class GroupRepositoryImpl @Inject constructor(private val groupApi: GroupApi) : 
 
     private fun processApiError(vkError: VKError) {
         when (vkError.apiError.errorCode) {
-            7 -> throw NoPermissionsError()
+            7 -> throw NoPermissionsException("No permissions error.")
         }
     }
 }

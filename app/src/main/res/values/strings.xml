@@ -26,10 +26,15 @@
     <string name="chart_description">group stats for the past year</string>
     <string name="no_chart_data_message">Unfortunately there is no available statistic.</string>
     <string name="amount_of_presenting_date">Amount of presenting data:</string>
-
+    <string name="no_permissions_message">Unfortunately, you do not have permissions to view statistics.</string>
+    <string name="back_to_search">Back to search</string>
 
     <!--icons-->
     <string name="members_count_icon">&#xe7fd;</string>
     <string name="creation_date_icon">&#xe192;</string>
+
+
+    <string name="back">back</string>
+    <string name="research">research</string>
 
 </resources>

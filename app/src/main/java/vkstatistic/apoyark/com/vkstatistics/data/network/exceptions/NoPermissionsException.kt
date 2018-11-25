@@ -2,7 +2,7 @@ package vkstatistic.apoyark.com.vkstatistics.data.network.exceptions
 
 import java.lang.RuntimeException
 
-class NoPermissionsError : RuntimeException {
+class NoPermissionsException : RuntimeException {
 
     constructor() : super()
 

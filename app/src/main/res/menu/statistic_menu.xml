@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_back"
-        android:icon="@drawable/ic_action_navigation_arrow_back"
+        android:id="@+id/action_research"
+        android:icon="@drawable/baseline_find_replace_24"
         android:orderInCategory="100"
-        app:showAsAction="always"
-        android:title="@string/back" />
+        android:title="@string/research"
+        app:showAsAction="always" />
 </menu>

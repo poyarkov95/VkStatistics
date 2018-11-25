@@ -3,6 +3,8 @@ package vkstatistic.apoyark.com.vkstatistics.presentation.mvp.statistic
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.disposables.CompositeDisposable
+import vkstatistic.apoyark.com.vkstatistics.data.network.exceptions.NoNetworkConnectionException
+import vkstatistic.apoyark.com.vkstatistics.data.network.exceptions.NoPermissionsException
 import vkstatistic.apoyark.com.vkstatistics.domain.global.models.statistic.StatisticModel
 import vkstatistic.apoyark.com.vkstatistics.domain.statistic.StatisticInteractor
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerProvider
@@ -35,12 +37,17 @@ class StatisticPresenter @Inject constructor(private val statisticInteractor: St
 
     private fun onStatisticLoadError(throwable: Throwable) {
         viewState.hideProgress()
-        viewState.showErrorView()
+        if (throwable is NoPermissionsException) {
+            viewState.showNoPermissionsView()
+        }
+        if (throwable is NoNetworkConnectionException) {
+            viewState.showNetworkErrorView()
+        }
         viewState.showErrorMessage(throwable.message)
     }
 
     fun retryLoad() {
-        viewState.hideErrorView()
+        viewState.hideErrorViews()
         viewState.showProgress()
         findGroupStatistic(cachedGroupId)
     }

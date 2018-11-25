@@ -11,14 +11,22 @@
         android:layout_height="160dp"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
-        android:layout_marginTop="160dp"
-        android:src="@drawable/empty_statistic_image"
+        android:layout_marginTop="190dp"
+        android:src="@drawable/no_permissions_image"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/no_chart_data_message"
+        android:text="@string/no_permissions_message"
+        android:gravity="center"
         android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/backToSearch_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="@string/back_to_search"/>
 </LinearLayout>

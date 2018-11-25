@@ -43,4 +43,9 @@
         layout="@layout/network_error_view"
         android:visibility="gone" />
 
+    <include
+        android:id="@+id/no_permissions_view"
+        layout="@layout/no_permissions_view"
+        android:visibility="gone"/>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -18,9 +18,11 @@ interface StatisticView : MvpView {
 
     fun hideProgress()
 
-    fun showErrorView()
+    fun showNetworkErrorView()
 
-    fun hideErrorView()
+    fun showNoPermissionsView()
+
+    fun hideErrorViews()
 
     fun showErrorMessage(message: String?)
 }
