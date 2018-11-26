@@ -110,7 +110,7 @@ class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener 
             }
 
             ChartType.GENDER -> {
-                statisticModel.ageStat.take(size).forEach { pair -> entries.add(PieEntry(pair.second, pair.first)) }
+                statisticModel.genderStat.take(size).forEach { pair -> entries.add(PieEntry(pair.second, pair.first)) }
             }
         }
 

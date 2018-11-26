@@ -7,14 +7,13 @@
     <string name="opened_group">Open group</string>
     <string name="private_group">Private group</string>
 
-    <string name="empty_recycler_view_message">Search the group to view statistics</string>
 
     <string name="view_statistics">View stats</string>
     <string name="unknown_creation_date">unknown</string>
     <string name="count_of_members">Count of members:</string>
     <string name="creation_date">Creation date:</string>
 
-    <string name="no_network_connection_message">No network connection</string>
+    <string name="no_network_connection_message">No network connection.</string>
     <string name="try_again_message">Try again</string>
 
     <string name="group_statistic">Group statistic</string>
@@ -28,6 +27,7 @@
     <string name="amount_of_presenting_date">Amount of presenting data:</string>
     <string name="no_permissions_message">Unfortunately, you do not have permissions to view statistics.</string>
     <string name="back_to_search">Back to search</string>
+    <string name="empty_recycler_view_message">Please, find the group to view the statistics.</string>
 
     <!--icons-->
     <string name="members_count_icon">&#xe7fd;</string>

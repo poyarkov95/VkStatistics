@@ -8,30 +8,30 @@ class StatisticModelMapper {
 
     companion object {
         fun map(statistic: List<Statistic>): Single<StatisticModel> {
-            val cityMap = HashMap<String, Float>()
-            val ageMap = HashMap<String, Float>()
-            val genderMap = HashMap<String, Float>()
+            val cityMap = LinkedHashMap<String, Float>()
+            val ageMap = LinkedHashMap<String, Float>()
+            val genderMap = LinkedHashMap<String, Float>()
 
             statistic.forEach {
                 it.visitors.cities?.forEach {
                     if (cityMap.containsKey(it.name)) {
-                        cityMap[it.name]?.plus(it.count)
+                        cityMap[it.name] = cityMap[it.name]!! + it.count
                     } else {
                         cityMap[it.name] = it.count.toFloat()
                     }
                 }
 
                 it.visitors.age?.forEach {
-                    if (cityMap.containsKey(it.value)) {
-                        cityMap[it.value]?.plus(it.count)
+                    if (ageMap.containsKey(it.value)) {
+                        ageMap[it.value] = ageMap[it.value]!! + it.count
                     } else {
                         ageMap[it.value] = it.count.toFloat()
                     }
                 }
 
                 it.visitors.sex?.forEach {
-                    if (cityMap.containsKey(it.value)) {
-                        cityMap[it.value]?.plus(it.count)
+                    if (genderMap.containsKey(it.value)) {
+                        genderMap[it.value] = genderMap[it.value]!! + it.count
                     } else {
                         genderMap[it.value] = it.count.toFloat()
                     }

@@ -79,4 +79,7 @@ dependencies {
     // joda time
     compile group: 'joda-time', name: 'joda-time', version: "$rootProject.jodaTime"
 
+    //rv state adapter
+    compile "com.rockerhieu:rv-adapter-states:$rootProject.rvStateAdapter"
+
 }

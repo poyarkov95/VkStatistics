@@ -74,7 +74,6 @@ class StatisticActivity : BaseMvpActivity(), StatisticView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-
     override fun showStatistics(statisticModel: StatisticModel) {
         val statisticPagerAdapter = StatisticPagerAdapter(supportFragmentManager)
         statisticPagerAdapter.addFragment(PieChartFragment.newInstance(ChartType.CITIES, statisticModel, intent.extras.getString(AppConstants.GROUP_NAME_EXTRA)), resources.getString(R.string.cities))
