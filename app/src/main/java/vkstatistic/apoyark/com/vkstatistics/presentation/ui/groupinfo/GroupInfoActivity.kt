@@ -40,12 +40,10 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
         no_network_view.retry_button.setOnClickListener({ presenter.retryLoad() })
 
         viewStats_button.setOnClickListener({
-
-            val bundle = Bundle()
-            bundle.putInt(AppConstants.GROUP_ID_EXTRA, intent.extras.getInt(AppConstants.GROUP_ID_EXTRA))
-            bundle.putString(AppConstants.GROUP_NAME_EXTRA, intent.extras.getString(AppConstants.GROUP_NAME_EXTRA))
-            intent.putExtras(bundle)
-            startActivity(Intent(this, StatisticActivity::class.java).putExtras(bundle))
+            val newIntent = Intent(this, StatisticActivity::class.java)
+            newIntent.putExtra(AppConstants.GROUP_ID_EXTRA, intent.extras.getInt(AppConstants.GROUP_ID_EXTRA))
+            newIntent.putExtra(AppConstants.GROUP_NAME_EXTRA, intent.extras.getString(AppConstants.GROUP_NAME_EXTRA))
+            startActivity(newIntent)
         })
 
         presenter.searchGroup(intent.extras.getInt(AppConstants.GROUP_ID_EXTRA))
@@ -62,7 +60,7 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> {
-                finish()
+                onBackPressed()
                 return true
             }
         }
@@ -100,18 +98,14 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
 
     override fun showViewContent() {
         groupInfoContent.visibility = View.VISIBLE
-    }
-
-    override fun hideViewContent() {
-        groupInfoContent.visibility = View.GONE
+        progressBar.visibility = View.GONE
+        no_network_view.visibility = View.GONE
     }
 
     override fun showProgress() {
         progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-        progressBar.visibility = View.GONE
+        groupInfoContent.visibility = View.GONE
+        no_network_view.visibility = View.GONE
     }
 
     override fun showErrorMessage(message: String?) {
@@ -120,12 +114,9 @@ class GroupInfoActivity : BaseMvpActivity(), GroupInfoView {
 
     override fun showErrorView() {
         no_network_view.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+        groupInfoContent.visibility = View.GONE
     }
-
-    override fun hideErrorView() {
-        no_network_view.visibility = View.GONE
-    }
-
 
     override fun onDestroy() {
         super.onDestroy()

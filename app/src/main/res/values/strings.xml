@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VkStatistics</string>
+    <string name="app_name">Vk Statistics</string>
 
     <integer name="com_vk_sdk_AppId">6713600</integer>
 
@@ -28,13 +28,21 @@
     <string name="no_permissions_message">Unfortunately, you do not have permissions to view statistics.</string>
     <string name="back_to_search">Back to search</string>
     <string name="empty_recycler_view_message">Please, find the group to view the statistics.</string>
+    <string name="back">back</string>
+    <string name="research">research</string>
+    <string name="years">years</string>
+
+    <string name="warning_dialog_title">Access denied!</string>
+    <string name="warning_dialog_message">You should provide access to your account to be able to use this application. Please do.</string>
+    <string name="warning_dialog_button_text">Got it</string>
 
     <!--icons-->
     <string name="members_count_icon">&#xe7fd;</string>
     <string name="creation_date_icon">&#xe192;</string>
 
 
-    <string name="back">back</string>
-    <string name="research">research</string>
+
+    <!--transition names-->
+    <string name="group_image_transition">groupImageTransition</string>
 
 </resources>

@@ -10,6 +10,5 @@ import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerPro
 class GroupInfoActivityModule {
 
     @Provides
-    fun provideGroupInfoInteractor(groupRepository: GroupRepository, schedulerProvider: SchedulerProvider)
-            = GroupInfoInteractor(groupRepository, schedulerProvider)
+    fun provideGroupInfoInteractor(groupRepository: GroupRepository, schedulerProvider: SchedulerProvider) = GroupInfoInteractor(groupRepository, schedulerProvider)
 }

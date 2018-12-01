@@ -1,6 +1,7 @@
 package vkstatistic.apoyark.com.vkstatistics.presentation.ui.statistic
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -31,6 +32,8 @@ class StatisticActivity : BaseMvpActivity(), StatisticView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistic)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // would be better to get rid of it(
 
         initToolbar()
 
@@ -85,31 +88,30 @@ class StatisticActivity : BaseMvpActivity(), StatisticView {
 
     override fun showViewContent() {
         view_pager.visibility = View.VISIBLE
-    }
-
-    override fun hideViewContent() {
-        view_pager.visibility = View.GONE
+        progressBar.visibility = View.GONE
+        no_network_view.visibility = View.GONE
+        no_permissions_view.visibility = View.GONE
     }
 
     override fun showProgress() {
         progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideProgress() {
-        progressBar.visibility = View.GONE
+        view_pager.visibility = View.GONE
+        no_network_view.visibility = View.GONE
+        no_permissions_view.visibility = View.GONE
     }
 
     override fun showNetworkErrorView() {
         no_network_view.visibility = View.VISIBLE
+        progressBar.visibility = View.GONE
+        view_pager.visibility = View.GONE
+        no_permissions_view.visibility = View.GONE
     }
 
     override fun showNoPermissionsView() {
         no_permissions_view.visibility = View.VISIBLE
-    }
-
-    override fun hideErrorViews() {
+        progressBar.visibility = View.GONE
+        view_pager.visibility = View.GONE
         no_network_view.visibility = View.GONE
-        no_permissions_view.visibility = View.GONE
     }
 
     override fun showErrorMessage(message: String?) {

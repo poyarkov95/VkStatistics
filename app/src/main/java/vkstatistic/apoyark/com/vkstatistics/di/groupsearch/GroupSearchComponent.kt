@@ -12,5 +12,6 @@ import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.main.GroupSearchPre
 @Presenter
 @Component(dependencies = [(AppComponent::class)], modules = [(GroupInfoActivityModule::class), (DataModule::class), (AppModule::class), (HttpInterceptorsModule::class)])
 interface GroupSearchComponent {
-    fun getPresenter() : GroupSearchPresenter
+
+    fun getPresenter(): GroupSearchPresenter
 }

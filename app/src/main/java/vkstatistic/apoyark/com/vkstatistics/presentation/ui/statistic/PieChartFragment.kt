@@ -1,6 +1,7 @@
 package vkstatistic.apoyark.com.vkstatistics.presentation.ui.statistic
 
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -38,6 +39,11 @@ class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener 
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -47,6 +53,11 @@ class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUp()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        pieChart.invalidate()
     }
 
     private fun setUp() {
@@ -84,6 +95,7 @@ class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener 
 
         pieChart.description.isEnabled = false
         pieChart.legend.setDrawInside(false)
+        pieChart.setEntryLabelColor(Color.BLACK)
 
         seekBar.setOnSeekBarChangeListener(this)
         val chartSize = statisticModel.getSize(chartType)
@@ -106,7 +118,7 @@ class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener 
             }
 
             ChartType.AGE -> {
-                statisticModel.ageStat.take(size).forEach { pair -> entries.add(PieEntry(pair.second, pair.first)) }
+                statisticModel.ageStat.take(size).forEach { pair -> entries.add(PieEntry(pair.second, "${pair.first} ${resources.getString(R.string.years)}")) }
             }
 
             ChartType.GENDER -> {
@@ -118,7 +130,8 @@ class PieChartFragment : Fragment(), ChartView, SeekBar.OnSeekBarChangeListener 
 
         pieChartDataSet.colors = getChartColors()
         pieChartDataSet.sliceSpace = 2f
-        pieChartDataSet.valueLineColor = Color.WHITE
+        pieChartDataSet.valueLineColor = Color.BLACK
+        pieChartDataSet.valueTextColor = Color.BLACK
         pieChartDataSet.valueTextSize = 12f
 
         val pieData = PieData(pieChartDataSet)

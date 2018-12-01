@@ -10,6 +10,5 @@ import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerPro
 class StatisticActivityModule {
 
     @Provides
-    fun provideStatisticInteractor(groupRepository: GroupRepository, schedulerProvider: SchedulerProvider)
-            = StatisticInteractor(groupRepository, schedulerProvider)
+    fun provideStatisticInteractor(groupRepository: GroupRepository, schedulerProvider: SchedulerProvider) = StatisticInteractor(groupRepository, schedulerProvider)
 }

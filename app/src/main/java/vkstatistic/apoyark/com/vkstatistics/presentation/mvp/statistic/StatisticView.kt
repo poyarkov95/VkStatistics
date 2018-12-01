@@ -12,17 +12,11 @@ interface StatisticView : MvpView {
 
     fun showViewContent()
 
-    fun hideViewContent()
-
     fun showProgress()
-
-    fun hideProgress()
 
     fun showNetworkErrorView()
 
     fun showNoPermissionsView()
-
-    fun hideErrorViews()
 
     fun showErrorMessage(message: String?)
 }

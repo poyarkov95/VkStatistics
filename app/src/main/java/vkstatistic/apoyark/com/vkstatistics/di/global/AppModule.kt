@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
+import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.DisposableManager
 import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.global.SchedulerProvider
 import javax.inject.Singleton
 
@@ -17,7 +18,10 @@ class AppModule {
     internal fun provideContext(application: Application): Context = application
 
     @Provides
-    internal fun proviceCompositeDisposable(): CompositeDisposable = CompositeDisposable()
+    internal fun provideCompositeDisposable(): CompositeDisposable = CompositeDisposable()
+
+    @Provides
+    internal fun provideDisposableManageer(compositeDisposable: CompositeDisposable) = DisposableManager(compositeDisposable)
 
     @Provides
     internal fun provideSchedulerProvider(): SchedulerProvider = SchedulerProvider()

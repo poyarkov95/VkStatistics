@@ -13,5 +13,5 @@ import vkstatistic.apoyark.com.vkstatistics.presentation.mvp.groupinfo.GroupInfo
 @Component(dependencies = [(AppComponent::class)], modules = [(GroupInfoActivityModule::class), (DataModule::class), (AppModule::class), (HttpInterceptorsModule::class)])
 interface GroupInfoComponent {
 
-    fun getPresenter() : GroupInfoPresenter
+    fun getPresenter(): GroupInfoPresenter
 }

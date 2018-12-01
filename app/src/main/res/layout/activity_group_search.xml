@@ -40,6 +40,11 @@
             tools:listitem="@layout/item_group" />
 
         <include
+            android:id="@+id/emptyRecyclerView"
+            layout="@layout/empty_recycler_view"
+            />
+
+        <include
             android:id="@+id/progressBar"
             layout="@layout/view_loading"
             android:visibility="gone" />

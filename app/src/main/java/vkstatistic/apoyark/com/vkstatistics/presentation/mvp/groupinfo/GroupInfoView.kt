@@ -12,15 +12,15 @@ interface GroupInfoView : MvpView {
 
     fun showViewContent()
 
-    fun hideViewContent()
+//    fun hideViewContent()
 
     fun showProgress()
 
-    fun hideProgress()
+//    fun hideProgress()
 
     fun showErrorView()
 
-    fun hideErrorView()
+//    fun hideErrorView()
 
     fun showErrorMessage(message: String?)
 }
