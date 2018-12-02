@@ -45,7 +45,6 @@
        <li>MPAndroidChart: 1.5.2</li> 
      </ul>
      
-     
      <h1>Scenarios</h1>
      <p>Here is the possible use cases that you can face using the app.</p>
      
