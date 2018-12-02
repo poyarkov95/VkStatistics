@@ -1,5 +1,5 @@
 <h1>Vk Statistics</h1>
-<p>Application that provides you the possibility to view group statistics from <a href="https://vk.com">Vk.com</a> social network.</p>
+<p>Application that provides you the possibility to view group statistics for the past year from <a href="https://vk.com">Vk.com</a> social network.</p>
 <p>Using this app you will able to see:</p>
 <ul>
    <li>Group info (name, date creation, users count)</li>
