@@ -41,10 +41,10 @@
 <p>Here is the possible use cases that you can face using the app.</p>
 <p1>Valid scenario.</p1>
 <p>User has provided acceess to account after warning and now he/she is able to find the group and view the statistics.</p>
-![](https://github.com/poyarkov95/VkStatistics/blob/master/full_case.gif)
+![full-case](https://github.com/poyarkov95/VkStatistics/blob/master/full_case.gif)
 <p>No network connection scenario</p>
 <p>User having issues with network connection.</p>
-![](https://github.com/poyarkov95/VkStatistics/blob/master/no-network-case.gif)
+![no-network-case](https://github.com/poyarkov95/VkStatistics/blob/master/no-network-case.gif)
 <p>No permissions to view the statistic</p>
 <p>User don't have permissions to watch the statistic. It's social network's restriction.</p>
-![](https://github.com/poyarkov95/VkStatistics/blob/master/no_permissions_case.gif)
+![no_permissions_case](https://github.com/poyarkov95/VkStatistics/blob/master/no_permissions_case.gif)
