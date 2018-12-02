@@ -19,6 +19,8 @@
             app:expandedTitleMarginBottom="32dp"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
+            app:expandedTitleTextAppearance="@style/ToolbarStyleExpanded"
+            app:collapsedTitleTextAppearance="@style/ToolbarStyleCollapsed"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -30,6 +32,7 @@
                 android:transitionName="@string/group_image_transition"/>
 
             <android.support.v7.widget.Toolbar
+                android:theme="@style/ToolbarAppCompatStyle"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -51,8 +54,9 @@
 
             <Button
                 android:id="@+id/viewStats_button"
+                style="@style/ButtonStyleWithIcon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
@@ -63,30 +67,31 @@
 
             <TextView
                 android:id="@+id/groupActivity_text_view"
+                style="@style/TextStyle.LargeBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:textSize="24sp"
-                android:textStyle="bold"
+                tools:text="Group activity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewStats_button" />
 
             <TextView
                 android:id="@+id/creationDateTitle_text_view"
+                style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/creation_date"
-                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/creationDateIcon_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/groupActivity_text_view" />
 
             <TextView
                 android:id="@+id/creationDate_text_view"
+                style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -115,24 +120,24 @@
 
             <TextView
                 android:id="@+id/membersCountTitle_text_view"
+                style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/count_of_members"
-                android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/membersCount_icon_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/creationDateTitle_text_view" />
 
             <TextView
                 android:id="@+id/membersCount_text_view"
+                style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.051"
                 app:layout_constraintStart_toEndOf="@+id/membersCountTitle_text_view"
@@ -141,6 +146,7 @@
 
             <TextView
                 android:id="@+id/description_text_view"
+                style="@style/TextStyle"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -149,12 +155,12 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/membersCount_icon_text_view"
-                app:layout_constraintVertical_bias="0.038" />
+                app:layout_constraintVertical_bias="0.038"
+                tools:text="Bla bla bla"/>
 
             <TextView
                 android:id="@+id/creationDateIcon_text_view"

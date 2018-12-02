@@ -25,7 +25,7 @@
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent" />
         <activity android:name=".presentation.ui.groupinfo.GroupInfoActivity" />
-        <activity android:name=".presentation.ui.statistic.StatisticActivity"></activity>
+        <activity android:name=".presentation.ui.statistic.StatisticActivity"/>
     </application>
 
 </manifest>

@@ -12,16 +12,18 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:theme="@style/ToolbarNoActionBarStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:layout_scrollFlags="scroll|enterAlways" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabTextColor="@color/vk_white"
+            app:tabSelectedTextColor="@color/vk_white"
             app:tabGravity="fill"
             app:tabMaxWidth="0dp"
             app:tabMode="fixed" />

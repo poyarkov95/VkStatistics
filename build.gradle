@@ -53,5 +53,4 @@ ext {
     moxy = '1.5.2'
     chartVersion = 'v3.1.0-alpha'
     jodaTime = '2.9.9'
-    rvStateAdapter = '1.2'
 }

@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -24,12 +24,12 @@
     <style name="ButtonStyleWithIcon">
         <item name="android:background">@drawable/button_main_shape</item>
         <item name="android:drawableRight">@drawable/round_pie_chart_24</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:font">@font/roboto_medium</item>
         <item name="android:textColor">#ffffffff</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:drawablePadding">5dp</item>
-        <item name="android:paddingRight">3dp</item>
-        <item name="android:paddingLeft">3dp</item>
         <item name="android:minWidth">111dip</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:drawablePadding">-4dp</item>
     </style>
 
     <style name="ButtonStyle">
@@ -40,7 +40,22 @@
         <item name="android:minWidth">111dip</item>
     </style>
 
+    <style name="ButtonBigWidth" parent="ButtonStyle">
+        <item name="android:minWidth">160dp</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:font">@font/roboto_medium</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextStyle.LargeBold">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="ToolbarStyleExpanded" parent="TextAppearance.AppCompat.Title">
+        <item name="android:font">@font/roboto_medium</item>
         <item name="android:textColor">#ffffffff</item>
         <item name="android:textSize">30sp</item>
         <item name="android:shadowColor">#000000</item>
@@ -50,6 +65,7 @@
     </style>
 
     <style name="ToolbarStyleCollapsed" parent="TextAppearance.AppCompat.Title">
+        <item name="android:font">@font/roboto_medium</item>
         <item name="android:textColor">#ffffffff</item>
         <item name="android:textSize">20sp</item>
         <item name="android:shadowColor">#000000</item>
